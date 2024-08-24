@@ -1,6 +1,6 @@
 {
   "greeting": "Hey",
-  "name": "Jomoko (a) Cylinder",
+  "name": "Jomoko",
   "greetingText": "As i like to irritate you always, this time i tried to repeat that in this way!",
   "wishText": "! ;)",
   "imagePath": "img/ly.png",
@@ -17,7 +17,7 @@
   "bigTextPart1": "S",
   "bigTextPart2": "O",
   "wishHeading": "Piranthanal Nalvalthukal Jomoko!",
-  "outroText": " Anbudan.",
+  "outroText": " Anbudan",
   "replayText": "Vimalrajan",
   "outroSmiley": ":)"
 }
