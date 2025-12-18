@@ -154,7 +154,7 @@ body {
   width: 25px;
   position: absolute;
   visibility: hidden;
-  z-index: -1;
+  z-index: 2;
 }
 
 /* ================= FOOTER TEXT ================= */
