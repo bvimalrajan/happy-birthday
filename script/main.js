@@ -1,288 +1,255 @@
-html {
-  box-sizing: border-box;
-}
+// Import the data to customize and insert them into page
+let dataArr = [];
 
-body {
-  margin: 0;
-  font-family: "Work Sans", sans-serif;
-}
+const fetchData = () => {
+  fetch("customize.json")
+    .then(data => data.json())
+    .then(data => {
+      dataArr = Object.keys(data);
 
-.container {
-  height: 100vh;
-  width: 100vh;
-  margin: 0 auto;
-  text-align: center;
-  visibility: hidden;
-  position: relative;
-  overflow: hidden;
-}
+      dataArr.map(customData => {
+        if (data[customData] !== "") {
 
-.container div.six {
-  top: 10vh;
-  z-index: 1;
-}
+          if (customData === "imagePath") {
+            document
+              .querySelector(`[data-node-name*="${customData}"]`)
+              .setAttribute("src", data[customData]);
+            const imgEl = document.querySelector(`[data-node-name*="${customData}"]`);
+            if (imgEl) imgEl.setAttribute("src", data[customData]);
 
-.container div.seven,
-.container div.eight {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-}
+          } else if (customData === "audioPath") {
+            const audioEl = document.getElementById("bg-music");
+            if (audioEl) {
+              audioEl.src = data[customData];
+            }
+            if (audioEl) audioEl.src = data[customData];
 
-.container > div {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 20vh;
-}
+          } else {
+            const el = document.querySelector(`[data-node-name*="${customData}"]`);
+            if (el) el.innerText = data[customData];
+          }
+        }
 
-.one {
-  font-size: 4.5rem;
-}
+        // Run animation after last JSON key
+        if (dataArr.length === dataArr.indexOf(customData) + 1) {
+          animationTimeline();
 
-.two {
-  font-size: 1.2rem;
-  font-weight: lighter;
-}
+          // Start countdown after data load
+          if (data.weddingDate) {
+            startCountdown(data.weddingDate);
+          }
+          // Start countdown
+          startCountdown("2026-03-16T00:00:00");
+        }
+      });
+    });
+};
 
-.three {
-  font-size: 3rem;
-}
+// ⏳ Countdown Logic (Persistent till end)
+// ⏳ Countdown Logic (Proper UI)
+const startCountdown = (weddingDateStr) => {
+  const countdownEl = document.getElementById("countdown");
+  if (!countdownEl) return;
+  const target = new Date(weddingDateStr).getTime();
 
-.four .text-box {
-  width: 600px;
-  margin: 0 auto;
-  border: 3px solid #aaa;
-  border-radius: 5px;
-  padding: 10px;
-  position: relative;
-}
+  const targetDate = new Date(weddingDateStr).getTime();
+  const daysEl = document.getElementById("cd-days");
+  const hoursEl = document.getElementById("cd-hours");
+  const minsEl = document.getElementById("cd-mins");
+  const secsEl = document.getElementById("cd-secs");
 
-.text-box p {
-  margin: 0;
-  text-align: left;
-}
+  if (!daysEl || !hoursEl || !minsEl || !secsEl) return;
 
-.text-box span {
-  visibility: hidden;
-}
+  const updateCountdown = () => {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+    const diff = target - now;
 
-.text-box .fake-btn {
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
-  color: #fff;
-  background-color: rgb(21, 161, 237);
-  padding: 5px 8px;
-  border-radius: 3px;
-}
+    if (diff <= 0) {
+      countdownEl.innerText = "💍 Today is the big day!";
+      daysEl.innerText = "0";
+      hoursEl.innerText = "00";
+      minsEl.innerText = "00";
+      secsEl.innerText = "00";
+      return;
+    }
 
-.five p {
-  font-size: 2rem;
-  position: absolute;
-  left: 0;
-  right: 0;
-}
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
 
-.idea-3 strong {
-  padding: 3px 5px;
-  border-radius: 3px;
-  display: inline-block;
-}
+    countdownEl.innerText =
+      `Wedding in ${days} days ${hours}h ${minutes}m ${seconds}s`;
+    daysEl.innerText = days;
+    hoursEl.innerText = hours.toString().padStart(2, "0");
+    minsEl.innerText = minutes.toString().padStart(2, "0");
+    secsEl.innerText = seconds.toString().padStart(2, "0");
+  };
 
-.five .idea-5 {
-  font-size: 4rem;
-}
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+};
 
-.idea-5 span,
-.idea-6 span,
-.wish-hbd span {
-  display: inline-block;
-}
+// Animation Timeline
+const animationTimeline = () => {
 
-.idea-6 span {
-  font-size: 15rem;
-}
-
-.six {
-  position: relative;
-}
-
-.six img {
-  display: inline-block;
-  max-width: 100%;
-  height: auto;
-}
-
-.baloons img {
-  display: inline-block;
-  position: absolute;
-}
-
-.baloons img:nth-child(even) {
-  left: -10%;
-}
-
-.baloons img:nth-child(odd) {
-  right: -10%;
-}
-
-.baloons img:nth-child(3n + 0) {
-  left: 30%;
-}
-
-.eight svg {
-  width: 25px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  visibility: hidden;
-  z-index: -1;
-}
-
-.wish-hbd {
-  font-size: 3em;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-.wish h5 {
-  font-weight: lighter;
-  font-size: 2rem;
-  margin: 10px 0 0;
-}
-
-.nine p {
-  font-size: 2rem;
-  font-weight: lighter;
-}
-
-#replay {
-  z-index: 3;
-  cursor: pointer;
-}
-
-/* ============================= */
-/* ⏳ COUNTDOWN – UPDATED STYLE  */
-/* ============================= */
-
-.countdown-wrapper {
-  position: fixed;
-  bottom: 26px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  z-index: 999;
-  font-family: "Work Sans", sans-serif;
-  pointer-events: none;
-}
-
-/* Caption – UPDATED */
-.countdown-caption {
-  font-size: 20px;            /* ⬆ Increased */
-  font-weight: 400;
-  color: #000;                /* ⬅ Black */
-  margin-bottom: 6px;
-}
-
-/* Countdown values – UPDATED */
-.countdown-time {
-  font-size: 20px;            /* ⬆ Increased */
-  font-weight: 400;
-  letter-spacing: 0.8px;
-  color: #ff69b4;
-}
-
-.countdown-time span[id^="cd-"] {
-  font-size: 24px;            /* ⬆ Bigger numbers */
-  font-weight: 500;
-  margin: 0 3px;
-  transition: opacity 0.4s ease-in-out;
-}
-
-.countdown-time .unit {
-  font-size: 14px;
-  opacity: 0.75;
-  margin-right: 6px;
-}
-
-.countdown-time .dot {
-  margin: 0 8px;
-  opacity: 0.5;
-}
-
-/* Divider */
-.countdown-divider {
-  margin: 8px auto 0;
-  width: 160px;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255, 105, 180, 0.6),
-    transparent
-  );
-}
-
-/* 🌙 Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-  .countdown-caption {
-    color: #ffffff;
+  // 🎵 Play background music safely
+  // 🎵 Background Music
+  const bgMusic = document.getElementById("bg-music");
+  if (bgMusic) {
+    bgMusic.volume = 0.6;
+    bgMusic.play().catch(() => {
+      // autoplay blocked – will play on user interaction
+    });
+    bgMusic.play().catch(() => {});
   }
 
-  .countdown-time {
-    color: #ff8fcf;
-  }
+  // Split chars for animation
+  // Split chars that need animation
+  const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
+  const hbd = document.getElementsByClassName("wish-hbd")[0];
 
-  .countdown-divider {
-    background: linear-gradient(
-      to right,
-      transparent,
-      rgba(255, 143, 207, 0.7),
-      transparent
-    );
-  }
-}
+  textBoxChars.innerHTML = `<span>${textBoxChars.innerHTML
+    .split("")
+    .join("</span><span>")}</span`;
 
-/* ============================= */
-/* 📱 Mobile Adjustments         */
-/* ============================= */
+  hbd.innerHTML = `<span>${hbd.innerHTML
+    .split("")
+    .join("</span><span>")}</span`;
 
-@media screen and (max-width: 500px) {
-  .container {
-    width: 90%;
-  }
+  const ideaTextTrans = {
+    opacity: 0,
+    y: -20,
+    rotationX: 5,
+    skewX: "15deg"
+  };
 
-  .four .text-box {
-    width: 90%;
-  }
+  const ideaTextTransLeave = {
+    opacity: 0,
+    y: 20,
+    rotationY: 5,
+    skewX: "-15deg"
+  };
 
-  .idea-6 span {
-    font-size: 10rem;
-  }
+  const tl = new TimelineMax();
 
-  .wish-hbd {
-    font-size: 2.2em;
-  }
+  tl
+    .to(".container", 0.1, { visibility: "visible" })
+    .from(".one", 0.7, { opacity: 0, y: 10 })
+    .from(".two", 0.4, { opacity: 0, y: 10 })
+    .to(".one", 0.7, { opacity: 0, y: 10 }, "+=2.5")
+    .to(".two", 0.7, { opacity: 0, y: 10 }, "-=1")
+    .from(".three", 0.7, { opacity: 0, y: 10 })
+    .to(".three", 0.7, { opacity: 0, y: 10 }, "+=2")
+    .from(".four", 0.7, { scale: 0.2, opacity: 0 })
+    .from(".fake-btn", 0.3, { scale: 0.2, opacity: 0 })
+    .staggerTo(".hbd-chatbox span", 0.5, { visibility: "visible" }, 0.05)
+    .to(".fake-btn", 0.1, { backgroundColor: "rgb(127, 206, 248)" })
+    .to(".four", 0.5, { scale: 0.2, opacity: 0, y: -150 }, "+=0.7")
+    .from(".idea-1", 0.7, ideaTextTrans)
+    .to(".idea-1", 0.7, ideaTextTransLeave, "+=1.5")
+    .from(".idea-2", 0.7, ideaTextTrans)
+    .to(".idea-2", 0.7, ideaTextTransLeave, "+=1.5")
+    .from(".idea-3", 0.7, ideaTextTrans)
+    .to(".idea-3 strong", 0.5, {
+      scale: 1.2,
+      x: 10,
+      backgroundColor: "rgb(21, 161, 237)",
+      color: "#fff"
+    })
+    .to(".idea-3", 0.7, ideaTextTransLeave, "+=1.5")
+    .from(".idea-4", 0.7, ideaTextTrans)
+    .to(".idea-4", 0.7, ideaTextTransLeave, "+=1.5")
+    .from(".idea-5", 0.7, {
+      rotationX: 15,
+      rotationZ: -10,
+      skewY: "-5deg",
+      y: 50,
+      z: 10,
+      opacity: 0
+    }, "+=0.5")
+    .to(".idea-5 .smiley", 0.7, { rotation: 90, x: 8 }, "+=0.4")
+    .to(".idea-5", 0.7, { scale: 0.2, opacity: 0 }, "+=2")
+    .staggerFrom(".idea-6 span", 0.8, {
+      scale: 3,
+      opacity: 0,
+      rotation: 15,
+      ease: Expo.easeOut
+    }, 0.2)
+    .staggerTo(".idea-6 span", 0.8, {
+      scale: 3,
+      opacity: 0,
+      rotation: -15,
+      ease: Expo.easeOut
+    }, 0.2, "+=1")
+    .staggerFromTo(".baloons img", 2.5, {
+      opacity: 0.9,
+      y: 1400
+    }, {
+      opacity: 1,
+      y: -1000
+    }, 0.2)
+    .from(".lydia-dp", 0.5, {
+      scale: 3.5,
+      opacity: 0,
+      x: 25,
+      y: -25,
+      rotationZ: -45
+    }, "-=2")
+    .from(".hat", 0.5, {
+      x: -100,
+      y: 350,
+      rotation: -180,
+      opacity: 0
+    })
+    .staggerFrom(".wish-hbd span", 0.7, {
+      opacity: 0,
+      y: -50,
+      rotation: 150,
+      skewX: "30deg",
+      ease: Elastic.easeOut.config(1, 0.5)
+    }, 0.1)
+    .staggerFromTo(".wish-hbd span", 0.7, {
+      scale: 1.4,
+      rotationY: 150
+    }, {
+      scale: 1,
+      rotationY: 0,
+      color: "#ff69b4",
+      ease: Expo.easeOut
+    }, 0.1, "party")
+    .from(".wish h5", 0.5, {
+      opacity: 0,
+      y: 10,
+      skewX: "-15deg"
+    }, "party")
+    .staggerTo(".eight svg", 1.5, {
+      visibility: "visible",
+      opacity: 0,
+      scale: 80,
+      repeat: 3,
+      repeatDelay: 1.4
+    }, 0.3)
+    .to(".six", 0.5, {
+      opacity: 0,
+      y: 30,
+      zIndex: "-1"
+    })
+    .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
+    .to(".last-smile", 0.5, { rotation: 90 }, "+=1");
 
-  .wish h5 {
-    font-size: 1.4rem;
-  }
+  // Restart Animation + Music
+  // Replay animation + music
+  const replyBtn = document.getElementById("replay");
+  replyBtn.addEventListener("click", () => {
+    tl.restart();
+    if (bgMusic) {
+      bgMusic.currentTime = 0;
+      bgMusic.play();
+    }
+  });
+};
 
-  .nine p {
-    font-size: 1.5rem;
-  }
-
-  .countdown-caption {
-    font-size: 16px;
-  }
-
-  .countdown-time {
-    font-size: 16px;
-  }
-
-  .countdown-time span[id^="cd-"] {
-    font-size: 20px;
-  }
-}
+// Run fetch and animation in sequence
+fetchData();
