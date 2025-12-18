@@ -326,12 +326,26 @@ fetchData();
   }, 1000);
 })();
 
-// 🎵 Background music: autoplay, loop, stop after 100s
+// 🎵 Background music (robust version)
 (function () {
   const audio = document.getElementById("bg-music");
-  if (!audio) return;
+  if (!audio) {
+    console.error("Audio element not found");
+    return;
+  }
 
-  audio.volume = 0.6; // optional: softer sound
+  audio.volume = 0.6;
+  audio.muted = true;
+
+  // Try autoplay after load
+  window.addEventListener("load", () => {
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(err => {
+        console.log("Autoplay blocked (expected on mobile)");
+      });
+    }
+  });
 
   // Loop audio
   audio.addEventListener("ended", () => {
@@ -345,9 +359,10 @@ fetchData();
     audio.currentTime = 0;
   }, 100000);
 
-  // Unmute on first user interaction (mobile requirement)
+  // Unmute on first user interaction
   const enableSound = () => {
     audio.muted = false;
+    audio.play().catch(() => {});
     document.removeEventListener("click", enableSound);
     document.removeEventListener("touchstart", enableSound);
   };
