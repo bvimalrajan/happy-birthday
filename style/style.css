@@ -302,12 +302,15 @@ body {
 /* -------------------------------------------------- */
 
 .countdown-wrapper {
-  position: absolute;
-  bottom: 60px;
+  position: fixed;
+  bottom: 30px;
+  left: 0;
   width: 100%;
   text-align: center;
   font-family: "Work Sans", sans-serif;
+  z-index: 5;
 }
+
 
 .countdown-title {
   font-size: 1.1rem;
