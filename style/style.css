@@ -1,20 +1,42 @@
+/* =========================
+   GLOBAL
+========================= */
+
 html {
   box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 
 body {
   margin: 0;
   font-family: "Work Sans", sans-serif;
+
+  /* Reserve space for countdown (prevents overlap) */
+  padding-bottom: 90px;
 }
+
+/* =========================
+   MAIN CONTAINER
+========================= */
 
 .container {
   height: 100vh;
-  width: 100vh;
+  width: 100vw;
   margin: 0 auto;
   text-align: center;
   visibility: hidden;
   position: relative;
   overflow: hidden;
+}
+
+.container > div {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 20vh;
 }
 
 .container div.six {
@@ -30,12 +52,9 @@ body {
   top: 0;
 }
 
-.container > div {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 20vh;
-}
+/* =========================
+   TEXT SCREENS
+========================= */
 
 .one {
   font-size: 4.5rem;
@@ -43,12 +62,16 @@ body {
 
 .two {
   font-size: 1.2rem;
-  font-weight: lighter;
+  font-weight: 300;
 }
 
 .three {
   font-size: 3rem;
 }
+
+/* =========================
+   CHAT BOX
+========================= */
 
 .four .text-box {
   width: 600px;
@@ -78,6 +101,10 @@ body {
   border-radius: 3px;
 }
 
+/* =========================
+   IDEA TEXT
+========================= */
+
 .five p {
   font-size: 2rem;
   position: absolute;
@@ -105,6 +132,10 @@ body {
   font-size: 15rem;
 }
 
+/* =========================
+   IMAGE SECTION
+========================= */
+
 .six {
   position: relative;
 }
@@ -114,6 +145,10 @@ body {
   max-width: 100%;
   height: auto;
 }
+
+/* =========================
+   BALLOONS
+========================= */
 
 .baloons img {
   display: inline-block;
@@ -128,9 +163,13 @@ body {
   right: -10%;
 }
 
-.baloons img:nth-child(3n + 0) {
+.baloons img:nth-child(3n) {
   left: 30%;
 }
+
+/* =========================
+   CONFETTI
+========================= */
 
 .eight svg {
   width: 25px;
@@ -141,6 +180,20 @@ body {
   z-index: -1;
 }
 
+.eight svg:nth-child(1) { top: 7vh; left: 5vw; fill: #bd6ecf; }
+.eight svg:nth-child(2) { top: 23vh; left: 35vw; fill: #7dd175; }
+.eight svg:nth-child(3) { top: 33vh; left: 23vw; fill: #349d8b; }
+.eight svg:nth-child(4) { top: 43vh; left: 57vw; fill: #347a9d; }
+.eight svg:nth-child(5) { top: 68vh; left: 7vw; fill: #c66053; }
+.eight svg:nth-child(6) { top: 42vh; left: 77vw; fill: #bfaa40; }
+.eight svg:nth-child(7) { top: 68vh; left: 83vw; fill: #e3bae8; }
+.eight svg:nth-child(8) { top: 86vh; left: 37vw; fill: #8762cb; }
+.eight svg:nth-child(9) { top: 94vh; left: 87vw; fill: #9a90da; }
+
+/* =========================
+   WISH SECTION
+========================= */
+
 .wish-hbd {
   font-size: 3em;
   margin: 0;
@@ -148,14 +201,18 @@ body {
 }
 
 .wish h5 {
-  font-weight: lighter;
+  font-weight: 300;
   font-size: 2rem;
   margin: 10px 0 0;
 }
 
+/* =========================
+   OUTRO
+========================= */
+
 .nine p {
   font-size: 2rem;
-  font-weight: lighter;
+  font-weight: 300;
 }
 
 #replay {
@@ -163,39 +220,38 @@ body {
   cursor: pointer;
 }
 
-/* ============================= */
-/* ⏳ COUNTDOWN – UPDATED STYLE  */
-/* ============================= */
+/* =========================
+   COUNTDOWN (BOTTOM CENTER)
+========================= */
 
 .countdown-wrapper {
   position: fixed;
-  bottom: 26px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
   z-index: 999;
   font-family: "Work Sans", sans-serif;
   pointer-events: none;
+  max-width: 90%;
 }
 
-/* Caption – UPDATED */
 .countdown-caption {
-  font-size: 20px;            /* ⬆ Increased */
+  font-size: 20px;
   font-weight: 400;
-  color: #000;                /* ⬅ Black */
+  color: #000;
   margin-bottom: 6px;
 }
 
-/* Countdown values – UPDATED */
 .countdown-time {
-  font-size: 20px;            /* ⬆ Increased */
+  font-size: 20px;
   font-weight: 400;
   letter-spacing: 0.8px;
   color: #ff69b4;
 }
 
 .countdown-time span[id^="cd-"] {
-  font-size: 24px;            /* ⬆ Bigger numbers */
+  font-size: 24px;
   font-weight: 500;
   margin: 0 3px;
   transition: opacity 0.4s ease-in-out;
@@ -212,7 +268,6 @@ body {
   opacity: 0.5;
 }
 
-/* Divider */
 .countdown-divider {
   margin: 8px auto 0;
   width: 160px;
@@ -225,7 +280,7 @@ body {
   );
 }
 
-/* 🌙 Dark Mode Support */
+/* 🌙 Dark Mode */
 @media (prefers-color-scheme: dark) {
   .countdown-caption {
     color: #ffffff;
@@ -245,13 +300,14 @@ body {
   }
 }
 
-/* ============================= */
-/* 📱 Mobile Adjustments         */
-/* ============================= */
+/* =========================
+   MOBILE
+========================= */
 
 @media screen and (max-width: 500px) {
-  .container {
-    width: 90%;
+
+  body {
+    padding-bottom: 110px;
   }
 
   .four .text-box {
