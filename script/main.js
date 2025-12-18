@@ -9,16 +9,14 @@ const fetchData = () => {
 
       dataArr.map(customData => {
         if (data[customData] !== "") {
+
           if (customData === "imagePath") {
-            document
-              .querySelector(`[data-node-name*="${customData}"]`)
-              .setAttribute("src", data[customData]);
+            const imgEl = document.querySelector(`[data-node-name*="${customData}"]`);
+            if (imgEl) imgEl.setAttribute("src", data[customData]);
 
           } else if (customData === "audioPath") {
             const audioEl = document.getElementById("bg-music");
-            if (audioEl) {
-              audioEl.src = data[customData];
-            }
+            if (audioEl) audioEl.src = data[customData];
 
           } else {
             const el = document.querySelector(`[data-node-name*="${customData}"]`);
@@ -30,28 +28,33 @@ const fetchData = () => {
         if (dataArr.length === dataArr.indexOf(customData) + 1) {
           animationTimeline();
 
-          // Start countdown after data load
-          if (data.weddingDate) {
-            startCountdown(data.weddingDate);
-          }
+          // Start countdown
+          startCountdown("2026-03-16T00:00:00");
         }
       });
     });
 };
 
-// ⏳ Countdown Logic (Persistent till end)
+// ⏳ Countdown Logic (Proper UI)
 const startCountdown = (weddingDateStr) => {
-  const countdownEl = document.getElementById("countdown");
-  if (!countdownEl) return;
+  const target = new Date(weddingDateStr).getTime();
 
-  const targetDate = new Date(weddingDateStr).getTime();
+  const daysEl = document.getElementById("cd-days");
+  const hoursEl = document.getElementById("cd-hours");
+  const minsEl = document.getElementById("cd-mins");
+  const secsEl = document.getElementById("cd-secs");
+
+  if (!daysEl || !hoursEl || !minsEl || !secsEl) return;
 
   const updateCountdown = () => {
     const now = new Date().getTime();
-    const diff = targetDate - now;
+    const diff = target - now;
 
     if (diff <= 0) {
-      countdownEl.innerText = "💍 Today is the big day!";
+      daysEl.innerText = "0";
+      hoursEl.innerText = "00";
+      minsEl.innerText = "00";
+      secsEl.innerText = "00";
       return;
     }
 
@@ -60,8 +63,10 @@ const startCountdown = (weddingDateStr) => {
     const minutes = Math.floor((diff / (1000 * 60)) % 60);
     const seconds = Math.floor((diff / 1000) % 60);
 
-    countdownEl.innerText =
-      `Wedding in ${days} days ${hours}h ${minutes}m ${seconds}s`;
+    daysEl.innerText = days;
+    hoursEl.innerText = hours.toString().padStart(2, "0");
+    minsEl.innerText = minutes.toString().padStart(2, "0");
+    secsEl.innerText = seconds.toString().padStart(2, "0");
   };
 
   updateCountdown();
@@ -71,16 +76,14 @@ const startCountdown = (weddingDateStr) => {
 // Animation Timeline
 const animationTimeline = () => {
 
-  // 🎵 Play background music safely
+  // 🎵 Background Music
   const bgMusic = document.getElementById("bg-music");
   if (bgMusic) {
     bgMusic.volume = 0.6;
-    bgMusic.play().catch(() => {
-      // autoplay blocked – will play on user interaction
-    });
+    bgMusic.play().catch(() => {});
   }
 
-  // Split chars for animation
+  // Split chars that need animation
   const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
   const hbd = document.getElementsByClassName("wish-hbd")[0];
 
@@ -213,7 +216,7 @@ const animationTimeline = () => {
     .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
     .to(".last-smile", 0.5, { rotation: 90 }, "+=1");
 
-  // Restart Animation + Music
+  // Replay animation + music
   const replyBtn = document.getElementById("replay");
   replyBtn.addEventListener("click", () => {
     tl.restart();
