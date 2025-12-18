@@ -1,135 +1,103 @@
-// Import the data to customize and insert them into page
-let dataArr = [];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Journey 💍</title>
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+  <link rel="stylesheet" href="style/style.css">
+</head>
 
-const fetchData = () => {
-  fetch("customize.json")
-    .then(data => data.json())
-    .then(data => {
-      dataArr = Object.keys(data);
+<body>
 
-      dataArr.map(customData => {
-        if (data[customData] !== "") {
+  <!-- 🎵 Background Audio -->
+  <audio id="bg-music" preload="auto"></audio>
 
-          if (customData === "imagePath") {
-            const imgEl = document.querySelector(`[data-node-name*="${customData}"]`);
-            if (imgEl) imgEl.setAttribute("src", data[customData]);
+  <!-- ⏳ Wedding Countdown -->
+  <div class="countdown-wrapper">
+    <p class="countdown-caption" data-node-name="countdownCaption">
+      Counting down to our big day 😄
+    </p>
 
-          } else if (customData === "audioPath") {
-            const audioEl = document.getElementById("bg-music");
-            if (audioEl) audioEl.src = data[customData];
+    <div class="countdown-box">
+      <div class="time-segment">
+        <span id="cd-days" class="time">0</span>
+        <span class="label">Days</span>
+      </div>
+      <div class="time-segment">
+        <span id="cd-hours" class="time">00</span>
+        <span class="label">Hrs</span>
+      </div>
+      <div class="time-segment">
+        <span id="cd-mins" class="time">00</span>
+        <span class="label">Min</span>
+      </div>
+      <div class="time-segment">
+        <span id="cd-secs" class="time">00</span>
+        <span class="label">Sec</span>
+      </div>
+    </div>
 
-          } else {
-            const el = document.querySelector(`[data-node-name*="${customData}"]`);
-            if (el) el.innerText = data[customData];
-          }
-        }
+    <p class="countdown-date">
+      Wedding Day: <strong>16 March 2026</strong> 💍
+    </p>
+  </div>
 
-        if (dataArr.length === dataArr.indexOf(customData) + 1) {
-          animationTimeline();
-          startCountdown("2026-03-16T00:00:00");
-        }
-      });
-    });
-};
+  <div class="container">
+    <div class="one">
+      <h1 class="one">
+        <span data-node-name="greeting"></span>
+        <span data-node-name="name"></span>
+      </h1>
+      <p class="two" data-node-name="greetingText"></p>
+    </div>
 
-// ⏳ Countdown Logic
-const startCountdown = (weddingDateStr) => {
-  const target = new Date(weddingDateStr).getTime();
+    <div class="three">
+      <p data-node-name="text1"></p>
+    </div>
 
-  const daysEl = document.getElementById("cd-days");
-  const hoursEl = document.getElementById("cd-hours");
-  const minsEl = document.getElementById("cd-mins");
-  const secsEl = document.getElementById("cd-secs");
+    <div class="four">
+      <div class="text-box">
+        <p class="hbd-chatbox" data-node-name="textInChatBox"></p>
+        <p class="fake-btn" data-node-name="sendButtonLabel"></p>
+      </div>
+    </div>
 
-  if (!daysEl || !hoursEl || !minsEl || !secsEl) return;
+    <div class="five">
+      <p class="idea-1" data-node-name="text2"></p>
+      <p class="idea-2" data-node-name="text3"></p>
+      <p class="idea-3">
+        <span data-node-name="text4"></span>
+        <strong data-node-name="text4Adjective"></strong>.
+      </p>
+      <p class="idea-4" data-node-name="text5Entry"></p>
+      <p class="idea-5">
+        <span data-node-name="text5Content"></span>
+        <span class="smiley" data-node-name="smiley"></span>
+      </p>
+      <p class="idea-6">
+        <span data-node-name="bigTextPart1"></span>
+        <span data-node-name="bigTextPart2"></span>
+      </p>
+    </div>
 
-  const update = () => {
-    const now = new Date().getTime();
-    const diff = target - now;
+    <div class="six">
+      <img class="lydia-dp" data-node-name="imagePath" />
+      <div class="wish">
+        <h3 class="wish-hbd" data-node-name="wishHeading"></h3>
+        <h5 data-node-name="wishText"></h5>
+      </div>
+    </div>
 
-    if (diff <= 0) {
-      daysEl.innerText = "0";
-      hoursEl.innerText = "00";
-      minsEl.innerText = "00";
-      secsEl.innerText = "00";
-      return;
-    }
+    <div class="nine">
+      <p data-node-name="outroText"></p>
+      <p id="replay" data-node-name="replayText"></p>
+      <p class="last-smile" data-node-name="outroSmiley"></p>
+    </div>
+  </div>
 
-    daysEl.innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-    hoursEl.innerText = Math.floor((diff / (1000 * 60 * 60)) % 24).toString().padStart(2, "0");
-    minsEl.innerText = Math.floor((diff / (1000 * 60)) % 60).toString().padStart(2, "0");
-    secsEl.innerText = Math.floor((diff / 1000) % 60).toString().padStart(2, "0");
-  };
-
-  update();
-  setInterval(update, 1000);
-};
-
-// Animation Timeline
-const animationTimeline = () => {
-
-  const bgMusic = document.getElementById("bg-music");
-  if (bgMusic) {
-    bgMusic.volume = 0.6;
-    bgMusic.play().catch(() => {});
-  }
-
-  const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
-  const hbd = document.getElementsByClassName("wish-hbd")[0];
-
-  textBoxChars.innerHTML = `<span>${textBoxChars.innerHTML.split("").join("</span><span>")}</span`;
-  hbd.innerHTML = `<span>${hbd.innerHTML.split("").join("</span><span>")}</span`;
-
-  const ideaTextTrans = { opacity: 0, y: -20, rotationX: 5, skewX: "15deg" };
-  const ideaTextTransLeave = { opacity: 0, y: 20, rotationY: 5, skewX: "-15deg" };
-
-  const tl = new TimelineMax();
-
-  tl
-    .to(".container", 0.1, { visibility: "visible" })
-    .from(".one", 0.7, { opacity: 0, y: 10 })
-    .from(".two", 0.4, { opacity: 0, y: 10 })
-    .to(".one", 0.7, { opacity: 0, y: 10 }, "+=2.5")
-    .to(".two", 0.7, { opacity: 0, y: 10 }, "-=1")
-    .from(".three", 0.7, { opacity: 0, y: 10 })
-    .to(".three", 0.7, { opacity: 0, y: 10 }, "+=2")
-    .from(".four", 0.7, { scale: 0.2, opacity: 0 })
-    .from(".fake-btn", 0.3, { scale: 0.2, opacity: 0 })
-    .staggerTo(".hbd-chatbox span", 0.5, { visibility: "visible" }, 0.05)
-    .to(".fake-btn", 0.1, { backgroundColor: "rgb(127, 206, 248)" })
-    .to(".four", 0.5, { scale: 0.2, opacity: 0, y: -150 }, "+=0.7")
-    .from(".idea-1", 0.7, ideaTextTrans)
-    .to(".idea-1", 0.7, ideaTextTransLeave, "+=1.5")
-    .from(".idea-2", 0.7, ideaTextTrans)
-    .to(".idea-2", 0.7, ideaTextTransLeave, "+=1.5")
-    .from(".idea-3", 0.7, ideaTextTrans)
-    .to(".idea-3 strong", 0.5, { scale: 1.2, x: 10, backgroundColor: "rgb(21,161,237)", color: "#fff" })
-    .to(".idea-3", 0.7, ideaTextTransLeave, "+=1.5")
-    .from(".idea-4", 0.7, ideaTextTrans)
-    .to(".idea-4", 0.7, ideaTextTransLeave, "+=1.5")
-    .from(".idea-5", 0.7, { rotationX: 15, rotationZ: -10, skewY: "-5deg", y: 50, z: 10, opacity: 0 }, "+=0.5")
-    .to(".idea-5 .smiley", 0.7, { rotation: 90, x: 8 }, "+=0.4")
-    .to(".idea-5", 0.7, { scale: 0.2, opacity: 0 }, "+=2")
-    .staggerFrom(".idea-6 span", 0.8, { scale: 3, opacity: 0, rotation: 15, ease: Expo.easeOut }, 0.2)
-    .staggerTo(".idea-6 span", 0.8, { scale: 3, opacity: 0, rotation: -15, ease: Expo.easeOut }, 0.2, "+=1")
-    .staggerFromTo(".baloons img", 2.5, { opacity: 0.9, y: 1400 }, { opacity: 1, y: -1000 }, 0.2)
-    .from(".lydia-dp", 0.5, { scale: 3.5, opacity: 0, x: 25, y: -25, rotationZ: -45 }, "-=2")
-    .staggerFrom(".wish-hbd span", 0.7, { opacity: 0, y: -50, rotation: 150, skewX: "30deg", ease: Elastic.easeOut.config(1, 0.5) }, 0.1)
-    .staggerFromTo(".wish-hbd span", 0.7, { scale: 1.4, rotationY: 150 }, { scale: 1, rotationY: 0, color: "#ff69b4", ease: Expo.easeOut }, 0.1, "party")
-    .from(".wish h5", 0.5, { opacity: 0, y: 10, skewX: "-15deg" }, "party")
-    .staggerTo(".eight svg", 1.5, { visibility: "visible", opacity: 0, scale: 80, repeat: 3, repeatDelay: 1.4 }, 0.3)
-    .to(".six", 0.5, { opacity: 0, y: 30, zIndex: "-1" })
-    .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
-    .to(".last-smile", 0.5, { rotation: 90 }, "+=1");
-
-  document.getElementById("replay").addEventListener("click", () => {
-    tl.restart();
-    if (bgMusic) {
-      bgMusic.currentTime = 0;
-      bgMusic.play();
-    }
-  });
-};
-
-// Run fetch and animation in sequence
-fetchData();
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+  <script src="script/main.js"></script>
+</body>
+</html>
