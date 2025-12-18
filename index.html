@@ -14,19 +14,41 @@
   <!-- 🎵 Background Audio -->
   <audio id="bg-music" preload="auto"></audio>
 
-  <!-- ⏳ Persistent Countdown -->
+  <!-- ⏳ Wedding Countdown -->
   <div class="countdown-wrapper">
     <p class="countdown-caption" data-node-name="countdownCaption">
-      Counting days till forever 😄
+      Counting down to our big day 😄
     </p>
-    <p class="countdown-timer" id="countdown">Loading countdown...</p>
+
+    <div class="countdown-box">
+      <div class="time-segment">
+        <span id="cd-days" class="time">0</span>
+        <span class="label">Days</span>
+      </div>
+      <div class="time-segment">
+        <span id="cd-hours" class="time">00</span>
+        <span class="label">Hrs</span>
+      </div>
+      <div class="time-segment">
+        <span id="cd-mins" class="time">00</span>
+        <span class="label">Min</span>
+      </div>
+      <div class="time-segment">
+        <span id="cd-secs" class="time">00</span>
+        <span class="label">Sec</span>
+      </div>
+    </div>
+
+    <p class="countdown-date">
+      Wedding Day: <strong>16 March 2026</strong> 💍
+    </p>
   </div>
 
   <div class="container">
     <div class="one">
       <h1 class="one">
-        <span data-node-name="greeting">Hey</span>
-        <span data-node-name="name">Lolly</span>
+        <span data-node-name="greeting"></span>
+        <span data-node-name="name"></span>
       </h1>
       <p class="two" data-node-name="greetingText"></p>
     </div>
@@ -62,7 +84,6 @@
 
     <div class="six">
       <img class="lydia-dp" data-node-name="imagePath" />
-      <img src="img/hat.svg" class="hat" />
       <div class="wish">
         <h3 class="wish-hbd" data-node-name="wishHeading"></h3>
         <h5 data-node-name="wishText"></h5>
