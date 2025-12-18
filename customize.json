@@ -1,23 +1,33 @@
 {
   "greeting": "Hey",
   "name": "Lolly 🦚💖",
-  "greetingText": "Something beautiful starts here — We hitched for life 💐💍💝",
+
+  "greetingText": "Something beautiful starts here — hitched for life 💐💍💝",
   "wishText": "! ;)",
+
   "imagePath": "img/ly.png",
-  "text1": "Happily Engaged with love ✔️ Marriage is loading… 💍❤️💐😄",
+
+  "text1": "Happily engaged with love ✔️ Marriage loading… 💍❤️💐😄",
+
   "textInChatBox": "Congratulations to us ✨!! Yeee! Let the happy dance begin 🧿🫶🏽😄",
   "sendButtonLabel": "Send",
+
   "text2": "I was all set to say it simply…",
-  "text3": "then i made me pause 😄"
-  "text4": "and realised, I wanted to do something",
-  "text4Adjective": "extra special",
+  "text3": "then i made a pause😄",
+  "text4": "and I realised, I wanted to do something",
+  "text4Adjective": "extra special 💖",
+
   "text5Entry": "Because,",
-  "text5Content": "It's for Lollyyyyy 🦋🫂!!! ",
+  "text5Content": "it’s for Lollyyyyy 🦋🫂!!!",
   "smiley": "😊",
-  "bigTextPart1": "from 'I' and 'you'",
-  "bigTextPart2": "now its 'US'",
-  "wishHeading": "Together & Forever💜",
+
+  "bigTextPart1": "from 'I' and 'YOU'",
+  "bigTextPart2": "to 'US'",
+
+  "wishHeading": "Together & Forever 💜",
+
   "outroText": "Anbudan💖",
   "replayText": "Vimal",
   "outroSmiley": ";)"
 }
+
