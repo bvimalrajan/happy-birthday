@@ -7,6 +7,8 @@ body {
   font-family: "Work Sans", sans-serif;
 }
 
+/* ================= CONTAINER ================= */
+
 .container {
   height: 100vh;
   width: 100vh;
@@ -37,15 +39,10 @@ body {
   top: 20vh;
 }
 
+/* ================= TYPOGRAPHY ================= */
+
 .one {
   font-size: 4.5rem;
-}
-
-.one > img {
-  vertical-align: middle;
-  margin-bottom: 10px;
-  max-width: 100%;
-  height: auto;
 }
 
 .two {
@@ -56,6 +53,8 @@ body {
 .three {
   font-size: 3rem;
 }
+
+/* ================= CHAT BOX ================= */
 
 .four .text-box {
   width: 600px;
@@ -79,11 +78,13 @@ body {
   position: absolute;
   right: 5px;
   bottom: 5px;
-  color: #fff;
   background-color: rgb(21, 161, 237);
+  color: #fff;
   padding: 5px 8px;
   border-radius: 3px;
 }
+
+/* ================= IDEAS ================= */
 
 .five p {
   font-size: 2rem;
@@ -92,32 +93,21 @@ body {
   right: 0;
 }
 
-.idea-3 strong {
-  padding: 3px 5px;
-  border-radius: 3px;
-  display: inline-block;
-}
-
 .five .idea-5 {
   font-size: 4rem;
-}
-
-.idea-5 span,
-.idea-6 span,
-.wish-hbd span {
-  display: inline-block;
 }
 
 .idea-6 span {
   font-size: 15rem;
 }
 
+/* ================= IMAGE ================= */
+
 .six {
   position: relative;
 }
 
 .six img {
-  display: inline-block;
   max-width: 100%;
   height: auto;
 }
@@ -129,8 +119,9 @@ body {
   left: 41.5%;
 }
 
+/* ================= BALLOONS ================= */
+
 .baloons img {
-  display: inline-block;
   position: absolute;
 }
 
@@ -142,84 +133,20 @@ body {
   right: -10%;
 }
 
-.baloons img:nth-child(3n + 0) {
+.baloons img:nth-child(3n) {
   left: 30%;
 }
+
+/* ================= CONFETTI ================= */
 
 .eight svg {
   width: 25px;
   position: absolute;
-  top: 0;
-  left: 0;
   visibility: hidden;
   z-index: -1;
 }
 
-.eight svg:nth-child(1) {
-  top: 7vh;
-  left: 5vw;
-  fill: #bd6ecf;
-}
-
-.eight svg:nth-child(2) {
-  top: 23vh;
-  left: 35vw;
-  fill: #7dd175;
-}
-
-.eight svg:nth-child(3) {
-  top: 33vh;
-  left: 23vw;
-  fill: #349d8b;
-}
-
-.eight svg:nth-child(4) {
-  top: 43vh;
-  left: 57vw;
-  fill: #347a9d;
-}
-
-.eight svg:nth-child(5) {
-  top: 68vh;
-  left: 7vw;
-  fill: #c66053;
-}
-
-.eight svg:nth-child(6) {
-  top: 42vh;
-  left: 77vw;
-  fill: #bfaa40;
-}
-
-.eight svg:nth-child(7) {
-  top: 68vh;
-  left: 83vw;
-  fill: #e3bae8;
-}
-
-.eight svg:nth-child(8) {
-  top: 86vh;
-  left: 37vw;
-  fill: #8762cb;
-}
-
-.eight svg:nth-child(9) {
-  top: 94vh;
-  left: 87vw;
-  fill: #9a90da;
-}
-
-.wish-hbd {
-  font-size: 3em;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-.wish h5 {
-  font-weight: lighter;
-  font-size: 2rem;
-  margin: 10px 0 0;
-}
+/* ================= FOOTER TEXT ================= */
 
 .nine p {
   font-size: 2rem;
@@ -227,34 +154,10 @@ body {
 }
 
 #replay {
-  z-index: 3;
   cursor: pointer;
 }
 
-/* Media Queries */
-@media screen and (max-height: 1000px) {
-  .six .hat {
-    left: 40%;
-  }
-}
-
-@media screen and (max-height: 800px) {
-  .six .hat {
-    left: 37%;
-  }
-}
-
-@media screen and (max-height: 700px) {
-  .six .hat {
-    left: 32%;
-  }
-}
-
-@media screen and (max-height: 850px) and (max-width: 450px) {
-  .six .hat {
-    left: 32%;
-  }
-}
+/* ================= MOBILE FIXES ================= */
 
 @media screen and (max-width: 500px) {
   .container {
@@ -263,15 +166,6 @@ body {
 
   .four .text-box {
     width: 90%;
-  }
-
-  .text-box .fake-btn {
-    right: 5px;
-    bottom: -38px;
-  }
-
-  .idea-5 span {
-    display: block;
   }
 
   .idea-6 span {
@@ -293,91 +187,61 @@ body {
 
   .nine p {
     font-size: 1.5rem;
-    font-weight: lighter;
   }
 }
 
-/* -------------------------------------------------- */
-/* Countdown styles – appended at the end */
-/* -------------------------------------------------- */
+/* ================================================= */
+/* ================= COUNTDOWN ===================== */
+/* ================================================= */
 
-/* Countdown – bottom center of screen */
-/* ================================ */
-/* Countdown bottom-center FIX (Mobile + Desktop) */
-/* ================================ */
-
-/* .countdown-wrapper {
-  position: fixed !important;
-  bottom: 20px !important;
-  top: auto !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: max-content;
-  text-align: center;
-  z-index: 999;
-} */
-
+/* Countdown scrolls with UI (NOT fixed) */
 .countdown-wrapper {
-  position: fixed;
-  bottom: 8px;
+  position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  bottom: -90px;
   text-align: center;
-  z-index: 9999;
-  pointer-events: none;
+  z-index: 5;
 }
 
-/* Explicit mobile override */
-@media screen and (max-width: 600px) {
-  .countdown-wrapper {
-    bottom: 15px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    top: auto !important;
-  }
-}
-
+/* Text */
 .countdown-title {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  color: #000;
+  font-size: 1rem;
+  margin-bottom: 6px;
 }
 
+/* Single-row compact layout */
 .countdown-timer {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  margin-bottom: 10px;
-}
-
-.countdown-timer span {
-  display: block;
-  font-size: 1.6rem;
+  white-space: nowrap;
+  font-size: 1.2rem;
   font-weight: 600;
 }
 
-.countdown-timer small {
-  font-size: 0.75rem;
-  letter-spacing: 1px;
+.countdown-timer span {
+  margin-right: 4px;
 }
 
 .countdown-date {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  margin-top: 4px;
 }
 
-/* Make countdown compact on mobile */
+/* Mobile compact spacing */
 @media screen and (max-width: 600px) {
+  .countdown-wrapper {
+    bottom: -70px;
+  }
+
   .countdown-timer {
-    gap: 8px;
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .countdown-timer span {
-    font-size: 1.2rem;
+    margin-right: 2px;
   }
 
   .countdown-title {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   .countdown-date {
