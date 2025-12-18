@@ -7,9 +7,6 @@ body {
   font-family: "Work Sans", sans-serif;
 }
 
-/* ===============================
-   CONTAINER
-================================ */
 .container {
   height: 100vh;
   width: 100vh;
@@ -18,13 +15,6 @@ body {
   visibility: hidden;
   position: relative;
   overflow: hidden;
-}
-
-.container > div {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 20vh;
 }
 
 .container div.six {
@@ -40,11 +30,22 @@ body {
   top: 0;
 }
 
-/* ===============================
-   TEXT SECTIONS
-================================ */
+.container > div {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 20vh;
+}
+
 .one {
   font-size: 4.5rem;
+}
+
+.one > img {
+  vertical-align: middle;
+  margin-bottom: 10px;
+  max-width: 100%;
+  height: auto;
 }
 
 .two {
@@ -54,6 +55,34 @@ body {
 
 .three {
   font-size: 3rem;
+}
+
+.four .text-box {
+  width: 600px;
+  margin: 0 auto;
+  border: 3px solid #aaa;
+  border-radius: 5px;
+  padding: 10px;
+  position: relative;
+}
+
+.text-box p {
+  margin: 0;
+  text-align: left;
+}
+
+.text-box span {
+  visibility: hidden;
+}
+
+.text-box .fake-btn {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  color: #fff;
+  background-color: rgb(21, 161, 237);
+  padding: 5px 8px;
+  border-radius: 3px;
 }
 
 .five p {
@@ -83,40 +112,6 @@ body {
   font-size: 15rem;
 }
 
-/* ===============================
-   CHAT BOX
-================================ */
-.four .text-box {
-  width: 600px;
-  margin: 0 auto;
-  border: 3px solid #aaa;
-  border-radius: 5px;
-  padding: 10px;
-  position: relative;
-}
-
-.text-box p {
-  margin: 0;
-  text-align: left;
-}
-
-.text-box span {
-  visibility: hidden;
-}
-
-.text-box .fake-btn {
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
-  color: #fff;
-  background-color: rgb(21, 161, 237);
-  padding: 5px 8px;
-  border-radius: 3px;
-}
-
-/* ===============================
-   IMAGE SECTION
-================================ */
 .six {
   position: relative;
 }
@@ -127,9 +122,14 @@ body {
   height: auto;
 }
 
-/* ===============================
-   BALLOONS
-================================ */
+.six .hat {
+  position: absolute;
+  width: 80px;
+  top: -35px;
+  left: 41.5%;
+  /* transform: scale(0.1); */
+}
+
 .baloons img {
   display: inline-block;
   position: absolute;
@@ -147,78 +147,69 @@ body {
   left: 30%;
 }
 
-/* ===============================
-   EIGHT (FIXED RIPPLE EFFECT)
-   🔥 THIS FIX PREVENTS BLACK SCREEN
-================================ */
-.eight {
-  pointer-events: none;
-}
-
 .eight svg {
   width: 25px;
   position: absolute;
   top: 0;
   left: 0;
   visibility: hidden;
-  z-index: -10;
+  z-index: -1;
 }
 
-.eight svg circle {
-  fill: none; /* CRITICAL FIX */
-  stroke: rgba(255, 105, 180, 0.6);
-  stroke-width: 2;
-}
-
-/* Original positions preserved */
 .eight svg:nth-child(1) {
   top: 7vh;
   left: 5vw;
+  fill: #bd6ecf;
 }
 
 .eight svg:nth-child(2) {
   top: 23vh;
   left: 35vw;
+  fill: #7dd175;
 }
 
 .eight svg:nth-child(3) {
   top: 33vh;
   left: 23vw;
+  fill: #349d8b;
 }
 
 .eight svg:nth-child(4) {
   top: 43vh;
   left: 57vw;
+  fill: #347a9d;
 }
 
 .eight svg:nth-child(5) {
   top: 68vh;
   left: 7vw;
+  fill: #c66053;
 }
 
 .eight svg:nth-child(6) {
   top: 42vh;
   left: 77vw;
+  fill: #bfaa40;
 }
 
 .eight svg:nth-child(7) {
   top: 68vh;
   left: 83vw;
+  fill: #e3bae8;
 }
 
 .eight svg:nth-child(8) {
   top: 86vh;
   left: 37vw;
+  fill: #8762cb;
 }
 
 .eight svg:nth-child(9) {
   top: 94vh;
   left: 87vw;
+  fill: #9a90da;
 }
 
-/* ===============================
-   WISH SECTION
-================================ */
 .wish-hbd {
   font-size: 3em;
   margin: 0;
@@ -231,32 +222,6 @@ body {
   margin: 10px 0 0;
 }
 
-/* ===============================
-   COUNTDOWN (NEW)
-================================ */
-.countdown {
-  margin-top: 20px;
-}
-
-.countdown-title {
-  font-size: 1.6rem;
-  color: #ff69b4;
-}
-
-#timer {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin: 5px 0;
-}
-
-.date {
-  font-size: 1.2rem;
-  color: #555;
-}
-
-/* ===============================
-   OUTRO
-================================ */
 .nine p {
   font-size: 2rem;
   font-weight: lighter;
@@ -267,9 +232,31 @@ body {
   cursor: pointer;
 }
 
-/* ===============================
-   RESPONSIVE
-================================ */
+/* Media Queries */
+@media screen and (max-height: 1000px) {
+  .six .hat {
+    left: 40%;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .six .hat {
+    left: 37%;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .six .hat {
+    left: 32%;
+  }
+}
+
+@media screen and (max-height: 850px) and (max-width: 450px) {
+  .six .hat {
+    left: 32%;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .container {
     width: 90%;
@@ -292,6 +279,11 @@ body {
     font-size: 10rem;
   }
 
+  .six .hat {
+    width: 50px;
+    top: -20px;
+  }
+
   .wish-hbd {
     font-size: 2.2em;
   }
@@ -302,5 +294,6 @@ body {
 
   .nine p {
     font-size: 1.5rem;
+    font-weight: lighter;
   }
 }
