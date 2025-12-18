@@ -40,13 +40,20 @@ body {
   top: 0;
   left: 0;
 } */
-
+/* 
 .container div.seven,
 .container div.eight {
   left: 0;
   right: 0;
   width: 100%;
   max-width: 100%;
+} */
+
+.container div.seven,
+.container div.eight {
+  position: fixed;
+  inset: 0;          /* <-- THIS IS THE KEY */
+  overflow: hidden;
 }
 
 .container > div {
