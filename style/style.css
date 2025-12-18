@@ -306,7 +306,7 @@ body {
 /* Countdown bottom-center FIX (Mobile + Desktop) */
 /* ================================ */
 
-.countdown-wrapper {
+/* .countdown-wrapper {
   position: fixed !important;
   bottom: 20px !important;
   top: auto !important;
@@ -315,6 +315,15 @@ body {
   width: max-content;
   text-align: center;
   z-index: 999;
+} */
+
+.countdown-wrapper {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 9999;
 }
 
 /* Explicit mobile override */
