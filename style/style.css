@@ -302,18 +302,30 @@ body {
 /* -------------------------------------------------- */
 
 /* Countdown – bottom center of screen */
+/* ================================ */
+/* Countdown bottom-center FIX (Mobile + Desktop) */
+/* ================================ */
+
 .countdown-wrapper {
   position: fixed !important;
   bottom: 20px !important;
   top: auto !important;
   left: 50% !important;
-  transform: translateX(-50%);
-  width: auto;
+  transform: translateX(-50%) !important;
+  width: max-content;
   text-align: center;
   z-index: 999;
 }
 
-
+/* Explicit mobile override */
+@media screen and (max-width: 600px) {
+  .countdown-wrapper {
+    bottom: 15px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: auto !important;
+  }
+}
 
 .countdown-title {
   font-size: 1.1rem;
