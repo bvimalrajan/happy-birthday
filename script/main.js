@@ -304,13 +304,13 @@ fetchData();
 /* -------------------------------------------------- */
 
 (function () {
-  const weddingDate = new Date("March 16, 2026 00:00:00").getTime();
+  const weddingDate = new Date("2026-03-16T00:00:00").getTime();
 
   setInterval(function () {
-    const now = new Date().getTime();
+    const now = Date.now();
     const distance = weddingDate - now;
 
-    if (distance < 0) return;
+    if (distance <= 0) return;
 
     document.getElementById("days").innerText =
       Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -325,3 +325,4 @@ fetchData();
       Math.floor((distance % (1000 * 60)) / 1000);
   }, 1000);
 })();
+
