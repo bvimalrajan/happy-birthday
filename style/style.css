@@ -1,31 +1,31 @@
-* {
+html {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
   font-family: "Work Sans", sans-serif;
-  overflow-x: hidden;
 }
 
 .container {
   height: 100vh;
-  width: 100%;
-  max-width: 1000px;
+  width: 100vh;
   margin: 0 auto;
   text-align: center;
+  visibility: hidden;
   position: relative;
+  overflow: hidden;
 }
 
 .container > div {
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
   top: 20vh;
-  opacity: 0;
 }
 
-.one h1 {
-  font-size: 4rem;
+.one {
+  font-size: 4.5rem;
 }
 
 .two {
@@ -37,21 +37,26 @@ body {
 }
 
 .four .text-box {
-  width: 90%;
-  max-width: 600px;
-  margin: auto;
+  width: 600px;
+  margin: 0 auto;
   border: 3px solid #aaa;
-  padding: 12px;
-  border-radius: 6px;
+  border-radius: 5px;
+  padding: 10px;
+  position: relative;
+}
+
+.text-box span {
+  visibility: hidden;
 }
 
 .fake-btn {
-  background: #15a1ed;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
   color: #fff;
-  padding: 5px 10px;
-  display: inline-block;
-  margin-top: 10px;
-  border-radius: 4px;
+  background-color: rgb(21, 161, 237);
+  padding: 5px 8px;
+  border-radius: 3px;
 }
 
 .five p {
@@ -59,53 +64,42 @@ body {
 }
 
 .idea-6 span {
-  font-size: 12rem;
+  font-size: 15rem;
 }
 
-.six img {
-  max-width: 280px;
-  border-radius: 10px;
-}
-
-.wish h3 {
-  font-size: 2.8rem;
+.wish-hbd {
+  font-size: 3em;
+  text-transform: uppercase;
 }
 
 .wish h5 {
+  font-size: 2rem;
+}
+
+/* Countdown */
+.countdown {
+  margin-top: 20px;
+}
+
+.countdown-title {
   font-size: 1.6rem;
+  color: #ff69b4;
 }
 
-.nine p {
+#timer {
   font-size: 1.8rem;
-}
-
-/* ⏳ Countdown */
-.countdown-wrapper {
-  position: fixed;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  z-index: 1000;
-}
-
-.countdown-box {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-}
-
-.countdown-box span {
-  font-size: 18px;
   font-weight: bold;
 }
 
-.countdown-box small {
-  display: block;
-  font-size: 12px;
+.date {
+  font-size: 1.2rem;
+  color: #555;
 }
 
-@media (max-width: 600px) {
-  .one h1 { font-size: 2.8rem; }
-  .idea-6 span { font-size: 8rem; }
+.nine p {
+  font-size: 2rem;
+}
+
+#replay {
+  cursor: pointer;
 }
