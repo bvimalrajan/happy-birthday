@@ -2,13 +2,6 @@ html {
   box-sizing: border-box;
 }
 
-/* body {
-  height: 100%;
-  overflow: hidden;
-  margin: 0;
-  font-family: "Work Sans", sans-serif;
-} */
-
 body {
   margin: 0;
   font-family: "Work Sans", sans-serif;
@@ -33,11 +26,13 @@ body {
 
 .container div.seven,
 .container div.eight {
-  width: 0
-  height: 0;
+  width: 100vw;
+  height: 100vh;
   position: fixed;
   top: 0;
+  left: 0;
 }
+
 
 .container > div {
   position: absolute;
@@ -255,6 +250,7 @@ body {
     margin: 0;          /* removes all margins */
     padding: 0;         /* safety: no padding either */
   }
+
 
   .countdown-title {
     font-size: 0.85rem;
