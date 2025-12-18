@@ -14,7 +14,6 @@ body {
   font-family: "Work Sans", sans-serif;
 }
 
-
 /* ================= CONTAINER ================= */
 
 .container {
@@ -202,27 +201,17 @@ body {
 /* ================= COUNTDOWN (SAFE) =============== */
 /* ================================================= */
 
-/*
-  IMPORTANT:
-  - NOT fixed
-  - NOT absolute-bottom hacks
-  - Lives in normal document flow
-  - This is the ONLY reliable mobile-safe approach
-*/
-
 .countdown-wrapper {
   margin: 32px auto 16px;
   text-align: center;
   width: fit-content;
 }
 
-/* Title */
 .countdown-title {
   font-size: 1rem;
   margin-bottom: 6px;
 }
 
-/* Single-row compact timer */
 .countdown-timer {
   white-space: nowrap;
   font-size: 1.15rem;
@@ -233,13 +222,10 @@ body {
   margin-right: 4px;
 }
 
-/* Date */
 .countdown-date {
   font-size: 0.9rem;
   margin-top: 4px;
 }
-
-/* ================= MOBILE COUNTDOWN ================= */
 
 @media screen and (max-width: 600px) {
   .countdown-wrapper {
@@ -262,4 +248,36 @@ body {
   .countdown-date {
     font-size: 0.8rem;
   }
+}
+
+/* ================================================= */
+/* ========== ADDITIONAL FIXES (ADD ONLY) =========== */
+/* ================================================= */
+
+/* 🔒 Lock confetti colors (prevents black rendering) */
+.eight svg circle {
+  fill: currentColor;
+}
+
+.eight svg:nth-child(1) { color: #bd6ecf; }
+.eight svg:nth-child(2) { color: #7dd175; }
+.eight svg:nth-child(3) { color: #349d8b; }
+.eight svg:nth-child(4) { color: #347a9d; }
+.eight svg:nth-child(5) { color: #c66053; }
+.eight svg:nth-child(6) { color: #bfaa40; }
+.eight svg:nth-child(7) { color: #e3bae8; }
+.eight svg:nth-child(8) { color: #8762cb; }
+.eight svg:nth-child(9) { color: #9a90da; }
+
+/* 🧠 Prevent GPU color flattening during image animation */
+.container,
+.six,
+.eight {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* 🖼 Ensure image does not darken layers behind */
+.lydia-dp {
+  background-color: transparent;
 }
