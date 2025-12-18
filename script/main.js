@@ -1,48 +1,36 @@
-// Load customize.json
-fetch("customize.json")
-  .then(res => res.json())
-  .then(data => {
-    document.querySelectorAll("[data-node-name]").forEach(el => {
-      const key = el.dataset.nodeName;
-      if (!data[key]) return;
-
-      if (el.tagName === "IMG" || el.tagName === "AUDIO") {
-        el.src = data[key];
-      } else {
-        el.innerHTML = data[key];
-      }
+const fetchData = () => {
+  fetch("customize.json")
+    .then(res => res.json())
+    .then(data => {
+      Object.keys(data).forEach(key => {
+        if (data[key] !== "") {
+          if (key === "imagePath") {
+            document.querySelector(`[data-node-name*="${key}"]`).src = data[key];
+          } else {
+            const el = document.querySelector(`[data-node-name*="${key}"]`);
+            if (el) el.innerText = data[key];
+          }
+        }
+      });
+      animationTimeline();
     });
-  });
+};
 
-// Countdown
-const target = new Date("March 16, 2026 00:00:00").getTime();
-setInterval(() => {
-  const now = Date.now();
-  const diff = target - now;
-  if (diff < 0) return;
-
-  document.getElementById("cd-days").innerText = Math.floor(diff / 86400000);
-  document.getElementById("cd-hours").innerText = Math.floor(diff / 3600000) % 24;
-  document.getElementById("cd-mins").innerText = Math.floor(diff / 60000) % 60;
-  document.getElementById("cd-secs").innerText = Math.floor(diff / 1000) % 60;
-}, 1000);
-
-// GSAP Timeline
-window.onload = () => {
+const animationTimeline = () => {
   const tl = new TimelineMax();
 
-  tl.to(".one", 1, { opacity: 1 })
-    .to(".one", 1, { opacity: 0, delay: 2 })
+  tl.to(".container", 0.1, { visibility: "visible" })
+    .from(".one", 0.7, { opacity: 0, y: 10 })
+    .from(".two", 0.4, { opacity: 0, y: 10 })
+    .to(".one", 0.7, { opacity: 0, y: 10 }, "+=2")
+    .to(".two", 0.7, { opacity: 0, y: 10 }, "-=1")
+    .from(".three", 0.7, { opacity: 0, y: 10 })
+    .from(".four", 0.7, { opacity: 0 })
+    .staggerFrom(".idea-6 span", 0.8, { scale: 3, opacity: 0 }, 0.2)
+    .from(".wish-hbd", 1, { opacity: 0, y: 20 })
+    .from(".nine p", 1, { opacity: 0, y: 20 });
 
-    .to(".three", 1, { opacity: 1 })
-    .to(".three", 1, { opacity: 0, delay: 2 })
-
-    .to(".four", 1, { opacity: 1 })
-    .to(".four", 1, { opacity: 0, delay: 2 })
-
-    .to(".five", 1, { opacity: 1 })
-    .to(".five", 1, { opacity: 0, delay: 3 })
-
-    .to(".six", 1, { opacity: 1 })
-    .to(".nine", 1, { opacity: 1, delay: 2 });
+  document.getElementById("replay").onclick = () => tl.restart();
 };
+
+fetchData();
