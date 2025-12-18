@@ -150,11 +150,13 @@ body {
 }
 
 .baloons img:nth-child(even) {
-  left: -10%;
+  left: 0;
+  transform: translateX(-20%);
 }
 
 .baloons img:nth-child(odd) {
-  right: -10%;
+  right: 0;
+  transform: translateX(20%);
 }
 
 .baloons img:nth-child(3n) {
@@ -162,12 +164,23 @@ body {
 }
 
 /* ================= CONFETTI ================= */
-
+/* 
 .eight svg {
   width: 25px;
   position: absolute;
   visibility: hidden;
   z-index: -1;
+} */
+.eight svg {
+  width: 25px;
+  position: absolute;
+  visibility: hidden;
+  z-index: -1;
+
+  /* 🔑 Critical fixes */
+  transform-origin: center;
+  will-change: transform, opacity;
+  pointer-events: none;
 }
 
 /* ================= FOOTER TEXT ================= */
