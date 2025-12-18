@@ -1,42 +1,20 @@
-/* =========================
-   GLOBAL
-========================= */
-
 html {
   box-sizing: border-box;
-}
-
-*, *::before, *::after {
-  box-sizing: inherit;
 }
 
 body {
   margin: 0;
   font-family: "Work Sans", sans-serif;
-
-  /* Reserve space for countdown (prevents overlap) */
-  padding-bottom: 90px;
 }
-
-/* =========================
-   MAIN CONTAINER
-========================= */
 
 .container {
   height: 100vh;
-  width: 100vw;
+  width: 100vh;
   margin: 0 auto;
   text-align: center;
   visibility: hidden;
   position: relative;
   overflow: hidden;
-}
-
-.container > div {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 20vh;
 }
 
 .container div.six {
@@ -52,26 +30,32 @@ body {
   top: 0;
 }
 
-/* =========================
-   TEXT SCREENS
-========================= */
+.container > div {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 20vh;
+}
 
 .one {
   font-size: 4.5rem;
 }
 
+.one > img {
+  vertical-align: middle;
+  margin-bottom: 10px;
+  max-width: 100%;
+  height: auto;
+}
+
 .two {
   font-size: 1.2rem;
-  font-weight: 300;
+  font-weight: lighter;
 }
 
 .three {
   font-size: 3rem;
 }
-
-/* =========================
-   CHAT BOX
-========================= */
 
 .four .text-box {
   width: 600px;
@@ -101,10 +85,6 @@ body {
   border-radius: 3px;
 }
 
-/* =========================
-   IDEA TEXT
-========================= */
-
 .five p {
   font-size: 2rem;
   position: absolute;
@@ -132,10 +112,6 @@ body {
   font-size: 15rem;
 }
 
-/* =========================
-   IMAGE SECTION
-========================= */
-
 .six {
   position: relative;
 }
@@ -145,10 +121,6 @@ body {
   max-width: 100%;
   height: auto;
 }
-
-/* =========================
-   BALLOONS
-========================= */
 
 .baloons img {
   display: inline-block;
@@ -163,13 +135,9 @@ body {
   right: -10%;
 }
 
-.baloons img:nth-child(3n) {
+.baloons img:nth-child(3n + 0) {
   left: 30%;
 }
-
-/* =========================
-   CONFETTI
-========================= */
 
 .eight svg {
   width: 25px;
@@ -190,10 +158,6 @@ body {
 .eight svg:nth-child(8) { top: 86vh; left: 37vw; fill: #8762cb; }
 .eight svg:nth-child(9) { top: 94vh; left: 87vw; fill: #9a90da; }
 
-/* =========================
-   WISH SECTION
-========================= */
-
 .wish-hbd {
   font-size: 3em;
   margin: 0;
@@ -201,18 +165,14 @@ body {
 }
 
 .wish h5 {
-  font-weight: 300;
+  font-weight: lighter;
   font-size: 2rem;
   margin: 10px 0 0;
 }
 
-/* =========================
-   OUTRO
-========================= */
-
 .nine p {
   font-size: 2rem;
-  font-weight: 300;
+  font-weight: lighter;
 }
 
 #replay {
@@ -220,57 +180,56 @@ body {
   cursor: pointer;
 }
 
-/* =========================
-   COUNTDOWN (BOTTOM CENTER)
-========================= */
+/* ============================= */
+/* ⏳ COUNTDOWN – BOTTOM CENTER  */
+/* ============================= */
 
 .countdown-wrapper {
   position: fixed;
-  bottom: 20px;
+  bottom: 22px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
   z-index: 999;
   font-family: "Work Sans", sans-serif;
   pointer-events: none;
-  max-width: 90%;
 }
 
 .countdown-caption {
-  font-size: 20px;
-  font-weight: 400;
-  color: #000;
-  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 300;
+  opacity: 0.85;
+  margin-bottom: 4px;
 }
 
 .countdown-time {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px;
   color: #ff69b4;
 }
 
 .countdown-time span[id^="cd-"] {
-  font-size: 24px;
-  font-weight: 500;
-  margin: 0 3px;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 2px;
   transition: opacity 0.4s ease-in-out;
 }
 
 .countdown-time .unit {
-  font-size: 14px;
-  opacity: 0.75;
-  margin-right: 6px;
+  font-size: 13px;
+  opacity: 0.7;
+  margin-right: 4px;
 }
 
 .countdown-time .dot {
-  margin: 0 8px;
+  margin: 0 6px;
   opacity: 0.5;
 }
 
 .countdown-divider {
-  margin: 8px auto 0;
-  width: 160px;
+  margin: 6px auto 0;
+  width: 120px;
   height: 1px;
   background: linear-gradient(
     to right,
@@ -280,10 +239,10 @@ body {
   );
 }
 
-/* 🌙 Dark Mode */
+/* 🌙 Dark mode */
 @media (prefers-color-scheme: dark) {
   .countdown-caption {
-    color: #ffffff;
+    color: rgba(255, 255, 255, 0.85);
   }
 
   .countdown-time {
@@ -300,18 +259,26 @@ body {
   }
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* ============================= */
+/* 📱 Mobile Adjustments         */
+/* ============================= */
 
 @media screen and (max-width: 500px) {
-
-  body {
-    padding-bottom: 110px;
+  .container {
+    width: 90%;
   }
 
   .four .text-box {
     width: 90%;
+  }
+
+  .text-box .fake-btn {
+    right: 5px;
+    bottom: -38px;
+  }
+
+  .idea-5 span {
+    display: block;
   }
 
   .idea-6 span {
@@ -330,15 +297,11 @@ body {
     font-size: 1.5rem;
   }
 
-  .countdown-caption {
-    font-size: 16px;
-  }
-
   .countdown-time {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .countdown-time span[id^="cd-"] {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
