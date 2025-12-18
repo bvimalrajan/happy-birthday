@@ -326,3 +326,33 @@ fetchData();
   }, 1000);
 })();
 
+// 🎵 Background music: autoplay, loop, stop after 100s
+(function () {
+  const audio = document.getElementById("bg-music");
+  if (!audio) return;
+
+  audio.volume = 0.6; // optional: softer sound
+
+  // Loop audio
+  audio.addEventListener("ended", () => {
+    audio.currentTime = 0;
+    audio.play().catch(() => {});
+  });
+
+  // Stop after 100 seconds
+  setTimeout(() => {
+    audio.pause();
+    audio.currentTime = 0;
+  }, 100000);
+
+  // Unmute on first user interaction (mobile requirement)
+  const enableSound = () => {
+    audio.muted = false;
+    document.removeEventListener("click", enableSound);
+    document.removeEventListener("touchstart", enableSound);
+  };
+
+  document.addEventListener("click", enableSound);
+  document.addEventListener("touchstart", enableSound);
+})();
+
