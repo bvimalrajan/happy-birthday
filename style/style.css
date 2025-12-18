@@ -301,15 +301,18 @@ body {
 /* Countdown styles – appended at the end */
 /* -------------------------------------------------- */
 
+/* Countdown – bottom center of screen */
 .countdown-wrapper {
-  position: fixed;
-  bottom: 30px;
-  left: 0;
-  width: 100%;
+  position: fixed !important;
+  bottom: 20px !important;
+  top: auto !important;
+  left: 50% !important;
+  transform: translateX(-50%);
+  width: auto;
   text-align: center;
-  font-family: "Work Sans", sans-serif;
-  z-index: 5;
+  z-index: 999;
 }
+
 
 
 .countdown-title {
