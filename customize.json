@@ -1,32 +1,24 @@
 {
   "greeting": "Hey",
   "name": "Lolly 🦚💖",
-
-  "greetingText": "Something beautiful starts here — we hitched for life💐💍💝",
-  "wishText": "! ;)",
-
-  "imagePath": "img/ly.JPG",
-
-  "text1": "Happily engaged with love ✔️ Marriage loading… 💍❤️💐😄",
-
-  "textInChatBox": "Congratulations to us ✨!! Yeee! Let the happy dance begin 🫶🏽🧿😄",
+  "greetingText": "Something beautiful starts here — We hitched for life 💐💍💝",
+  "wishText": "From ‘I’ and ‘YOU’ to ‘US’ — always 💖",
+  "imagePath": "img/ly.png",
+  "text1": "Happily Engaged ✔️ Marriage — loading… 💍❤️💐😄",
+  "textInChatBox": "Congratulations to us ✨!! Yeee! Let the happy dance begin 🧿🫶🏽😄",
   "sendButtonLabel": "Send",
-
-  "text2": "I was all set to say as simple…",
-  "text3": "then i realised",
-  "text4": "I wanted to do something",
-  "text4Adjective": "extra special 💖",
-
+  "text2": "I was all set to say it simply…",
+  "text3": "then i made me pause 😄"
+  "text4": "and realised, I wanted to do something",
+  "text4Adjective": "extra special",
   "text5Entry": "Because,",
-  "text5Content": "it’s for Lollyyyyy  🦋🫂!!!",
+  "text5Content": "It's for Lollyyyyy 🦋🫂!!! ",
   "smiley": ":)",
-
   "bigTextPart1": "U",
   "bigTextPart2": "S",
-
-  "wishHeading": "Together and Forever",
-
-  "outroText": "Anbudan 💖",
+  "wishHeading": "Together & Forever",
+  "outroText": "Anbudan💖",
   "replayText": "Vimal",
   "outroSmiley": ":)"
 }
+
