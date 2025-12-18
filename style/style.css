@@ -20,6 +20,7 @@ body {
   visibility: hidden;
   position: relative;
   overflow: hidden;
+  z-index: 1;
 }
 
 .container div.six {
@@ -30,9 +31,7 @@ body {
 /* Fullscreen confetti layers (CORRECT FIX) */
 .container div.seven,
 .container div.eight {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
+  z-index: 0;
 }
 
 /* Animation positioning */
