@@ -1,103 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Journey 💍</title>
-  <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400" rel="stylesheet">
-  <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
-  <link rel="stylesheet" href="style/style.css">
-</head>
+// Load customize.json
+fetch("customize.json")
+  .then(res => res.json())
+  .then(data => {
+    document.querySelectorAll("[data-node-name]").forEach(el => {
+      const key = el.dataset.nodeName;
+      if (!data[key]) return;
 
-<body>
+      if (el.tagName === "IMG" || el.tagName === "AUDIO") {
+        el.src = data[key];
+      } else {
+        el.innerHTML = data[key];
+      }
+    });
+  });
 
-  <!-- 🎵 Background Audio -->
-  <audio id="bg-music" preload="auto"></audio>
+// Countdown
+const target = new Date("March 16, 2026 00:00:00").getTime();
+setInterval(() => {
+  const now = Date.now();
+  const diff = target - now;
+  if (diff < 0) return;
 
-  <!-- ⏳ Wedding Countdown -->
-  <div class="countdown-wrapper">
-    <p class="countdown-caption" data-node-name="countdownCaption">
-      Counting down to our big day 😄
-    </p>
+  document.getElementById("cd-days").innerText = Math.floor(diff / 86400000);
+  document.getElementById("cd-hours").innerText = Math.floor(diff / 3600000) % 24;
+  document.getElementById("cd-mins").innerText = Math.floor(diff / 60000) % 60;
+  document.getElementById("cd-secs").innerText = Math.floor(diff / 1000) % 60;
+}, 1000);
 
-    <div class="countdown-box">
-      <div class="time-segment">
-        <span id="cd-days" class="time">0</span>
-        <span class="label">Days</span>
-      </div>
-      <div class="time-segment">
-        <span id="cd-hours" class="time">00</span>
-        <span class="label">Hrs</span>
-      </div>
-      <div class="time-segment">
-        <span id="cd-mins" class="time">00</span>
-        <span class="label">Min</span>
-      </div>
-      <div class="time-segment">
-        <span id="cd-secs" class="time">00</span>
-        <span class="label">Sec</span>
-      </div>
-    </div>
+// GSAP Timeline
+window.onload = () => {
+  const tl = new TimelineMax();
 
-    <p class="countdown-date">
-      Wedding Day: <strong>16 March 2026</strong> 💍
-    </p>
-  </div>
+  tl.to(".one", 1, { opacity: 1 })
+    .to(".one", 1, { opacity: 0, delay: 2 })
 
-  <div class="container">
-    <div class="one">
-      <h1 class="one">
-        <span data-node-name="greeting"></span>
-        <span data-node-name="name"></span>
-      </h1>
-      <p class="two" data-node-name="greetingText"></p>
-    </div>
+    .to(".three", 1, { opacity: 1 })
+    .to(".three", 1, { opacity: 0, delay: 2 })
 
-    <div class="three">
-      <p data-node-name="text1"></p>
-    </div>
+    .to(".four", 1, { opacity: 1 })
+    .to(".four", 1, { opacity: 0, delay: 2 })
 
-    <div class="four">
-      <div class="text-box">
-        <p class="hbd-chatbox" data-node-name="textInChatBox"></p>
-        <p class="fake-btn" data-node-name="sendButtonLabel"></p>
-      </div>
-    </div>
+    .to(".five", 1, { opacity: 1 })
+    .to(".five", 1, { opacity: 0, delay: 3 })
 
-    <div class="five">
-      <p class="idea-1" data-node-name="text2"></p>
-      <p class="idea-2" data-node-name="text3"></p>
-      <p class="idea-3">
-        <span data-node-name="text4"></span>
-        <strong data-node-name="text4Adjective"></strong>.
-      </p>
-      <p class="idea-4" data-node-name="text5Entry"></p>
-      <p class="idea-5">
-        <span data-node-name="text5Content"></span>
-        <span class="smiley" data-node-name="smiley"></span>
-      </p>
-      <p class="idea-6">
-        <span data-node-name="bigTextPart1"></span>
-        <span data-node-name="bigTextPart2"></span>
-      </p>
-    </div>
-
-    <div class="six">
-      <img class="lydia-dp" data-node-name="imagePath" />
-      <div class="wish">
-        <h3 class="wish-hbd" data-node-name="wishHeading"></h3>
-        <h5 data-node-name="wishText"></h5>
-      </div>
-    </div>
-
-    <div class="nine">
-      <p data-node-name="outroText"></p>
-      <p id="replay" data-node-name="replayText"></p>
-      <p class="last-smile" data-node-name="outroSmiley"></p>
-    </div>
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
-  <script src="script/main.js"></script>
-</body>
-</html>
+    .to(".six", 1, { opacity: 1 })
+    .to(".nine", 1, { opacity: 1, delay: 2 });
+};
