@@ -5,22 +5,17 @@ html {
 html,
 body {
   max-width: 100%;
-  overflow-x: hidden !important;
+  overflow-x: hidden;
   margin: 0;
   font-family: "Work Sans", sans-serif;
 }
-
-/* body {
-  margin: 0;
-  font-family: "Work Sans", sans-serif;
-} */
 
 /* ================= CONTAINER ================= */
 
 .container {
   height: 100vh;
   width: 100vw;
-  margin: 0 auto;
+  margin: 0;
   text-align: center;
   visibility: hidden;
   position: relative;
@@ -32,30 +27,15 @@ body {
   z-index: 1;
 }
 
-/* .container div.seven,
-.container div.eight {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-} */
-/* 
-.container div.seven,
-.container div.eight {
-  left: 0;
-  right: 0;
-  width: 100%;
-  max-width: 100%;
-} */
-
+/* Fullscreen confetti layers (CORRECT FIX) */
 .container div.seven,
 .container div.eight {
   position: fixed;
-  inset: 0;          /* <-- THIS IS THE KEY */
+  inset: 0;
   overflow: hidden;
 }
 
+/* Animation positioning */
 .container > div {
   position: absolute;
   left: 0;
@@ -164,26 +144,33 @@ body {
 }
 
 /* ================= CONFETTI ================= */
-/* 
-.eight svg {
-  width: 25px;
-  position: absolute;
-  visibility: hidden;
-  z-index: -1;
-} */
-.eight svg {
-  width: 25px;
-  position: absolute;
-  visibility: hidden;
-  z-index: -1;
 
-  /* 🔑 Critical fixes */
+.eight svg {
+  width: 25px;
+  position: absolute;
+  visibility: hidden;
+  z-index: -1;
   transform-origin: center;
   will-change: transform, opacity;
   pointer-events: none;
 }
 
-/* ================= FOOTER TEXT ================= */
+/* Lock confetti colors */
+.eight svg circle {
+  fill: currentColor;
+}
+
+.eight svg:nth-child(1) { color: #bd6ecf; }
+.eight svg:nth-child(2) { color: #7dd175; }
+.eight svg:nth-child(3) { color: #349d8b; }
+.eight svg:nth-child(4) { color: #347a9d; }
+.eight svg:nth-child(5) { color: #c66053; }
+.eight svg:nth-child(6) { color: #bfaa40; }
+.eight svg:nth-child(7) { color: #e3bae8; }
+.eight svg:nth-child(8) { color: #8762cb; }
+.eight svg:nth-child(9) { color: #9a90da; }
+
+/* ================= FOOTER ================= */
 
 .nine p {
   font-size: 2rem;
@@ -197,10 +184,6 @@ body {
 /* ================= MOBILE FIXES ================= */
 
 @media screen and (max-width: 500px) {
-  .container {
-    width: 90%;
-  }
-
   .four .text-box {
     width: 90%;
   }
@@ -227,9 +210,7 @@ body {
   }
 }
 
-/* ================================================= */
-/* ================= COUNTDOWN (SAFE) =============== */
-/* ================================================= */
+/* ================= COUNTDOWN ================= */
 
 .countdown-wrapper {
   margin: 32px auto 16px;
@@ -256,82 +237,34 @@ body {
   font-size: 0.9rem;
   margin-top: 4px;
 }
-/* 
-@media screen and (max-width: 600px) {
-  .countdown-wrapper {
-    margin-top: 20px;
-    margin-bottom: 12px;
-  }
 
-  .countdown-title {
-    font-size: 0.85rem;
-  }
-
-  .countdown-timer {
-    font-size: 1rem;
-  }
-
-  .countdown-timer span {
-    margin-right: 2px;
-  }
-
-  .countdown-date {
-    font-size: 0.8rem;
-  }
-} */
-
+/* Mobile countdown */
 @media screen and (max-width: 600px) {
   .countdown-wrapper {
     width: 100%;
     margin: 0;
     padding: 0;
-    left: 0;
-    right: 0;
     text-align: center;
   }
-}
 
-  .countdown-title {
+  .countdown-title,
+  .countdown-date {
     font-size: 0.85rem;
-    margin: 0;          /* remove title margin */
+    margin: 0;
   }
 
   .countdown-timer {
     font-size: 1rem;
-    margin: 0;          /* remove any inherited margin */
+    margin: 0;
   }
 
   .countdown-timer span {
-    margin-right: 2px;  /* keep minimal spacing between numbers */
-  }
-
-  .countdown-date {
-    font-size: 0.8rem;
-    margin: 0;          /* remove date margin */
+    margin-right: 2px;
   }
 }
 
+/* ================= GPU SAFETY ================= */
 
-/* ================================================= */
-/* ========== ADDITIONAL FIXES (ADD ONLY) =========== */
-/* ================================================= */
-
-/* 🔒 Lock confetti colors (prevents black rendering) */
-.eight svg circle {
-  fill: currentColor;
-}
-
-.eight svg:nth-child(1) { color: #bd6ecf; }
-.eight svg:nth-child(2) { color: #7dd175; }
-.eight svg:nth-child(3) { color: #349d8b; }
-.eight svg:nth-child(4) { color: #347a9d; }
-.eight svg:nth-child(5) { color: #c66053; }
-.eight svg:nth-child(6) { color: #bfaa40; }
-.eight svg:nth-child(7) { color: #e3bae8; }
-.eight svg:nth-child(8) { color: #8762cb; }
-.eight svg:nth-child(9) { color: #9a90da; }
-
-/* 🧠 Prevent GPU color flattening during image animation */
 .container,
 .six,
 .eight {
@@ -339,7 +272,6 @@ body {
   backface-visibility: hidden;
 }
 
-/* 🖼 Ensure image does not darken layers behind */
 .lydia-dp {
   background-color: transparent;
 }
