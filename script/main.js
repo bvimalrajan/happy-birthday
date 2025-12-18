@@ -11,17 +11,11 @@ const fetchData = () => {
         if (data[customData] !== "") {
 
           if (customData === "imagePath") {
-            document
-              .querySelector(`[data-node-name*="${customData}"]`)
-              .setAttribute("src", data[customData]);
             const imgEl = document.querySelector(`[data-node-name*="${customData}"]`);
             if (imgEl) imgEl.setAttribute("src", data[customData]);
 
           } else if (customData === "audioPath") {
             const audioEl = document.getElementById("bg-music");
-            if (audioEl) {
-              audioEl.src = data[customData];
-            }
             if (audioEl) audioEl.src = data[customData];
 
           } else {
@@ -30,29 +24,18 @@ const fetchData = () => {
           }
         }
 
-        // Run animation after last JSON key
         if (dataArr.length === dataArr.indexOf(customData) + 1) {
           animationTimeline();
-
-          // Start countdown after data load
-          if (data.weddingDate) {
-            startCountdown(data.weddingDate);
-          }
-          // Start countdown
           startCountdown("2026-03-16T00:00:00");
         }
       });
     });
 };
 
-// ⏳ Countdown Logic (Persistent till end)
-// ⏳ Countdown Logic (Proper UI)
+// ⏳ Countdown Logic
 const startCountdown = (weddingDateStr) => {
-  const countdownEl = document.getElementById("countdown");
-  if (!countdownEl) return;
   const target = new Date(weddingDateStr).getTime();
 
-  const targetDate = new Date(weddingDateStr).getTime();
   const daysEl = document.getElementById("cd-days");
   const hoursEl = document.getElementById("cd-hours");
   const minsEl = document.getElementById("cd-mins");
@@ -60,13 +43,11 @@ const startCountdown = (weddingDateStr) => {
 
   if (!daysEl || !hoursEl || !minsEl || !secsEl) return;
 
-  const updateCountdown = () => {
+  const update = () => {
     const now = new Date().getTime();
-    const diff = targetDate - now;
     const diff = target - now;
 
     if (diff <= 0) {
-      countdownEl.innerText = "💍 Today is the big day!";
       daysEl.innerText = "0";
       hoursEl.innerText = "00";
       minsEl.innerText = "00";
@@ -74,63 +55,33 @@ const startCountdown = (weddingDateStr) => {
       return;
     }
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    countdownEl.innerText =
-      `Wedding in ${days} days ${hours}h ${minutes}m ${seconds}s`;
-    daysEl.innerText = days;
-    hoursEl.innerText = hours.toString().padStart(2, "0");
-    minsEl.innerText = minutes.toString().padStart(2, "0");
-    secsEl.innerText = seconds.toString().padStart(2, "0");
+    daysEl.innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+    hoursEl.innerText = Math.floor((diff / (1000 * 60 * 60)) % 24).toString().padStart(2, "0");
+    minsEl.innerText = Math.floor((diff / (1000 * 60)) % 60).toString().padStart(2, "0");
+    secsEl.innerText = Math.floor((diff / 1000) % 60).toString().padStart(2, "0");
   };
 
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+  update();
+  setInterval(update, 1000);
 };
 
 // Animation Timeline
 const animationTimeline = () => {
 
-  // 🎵 Play background music safely
-  // 🎵 Background Music
   const bgMusic = document.getElementById("bg-music");
   if (bgMusic) {
     bgMusic.volume = 0.6;
-    bgMusic.play().catch(() => {
-      // autoplay blocked – will play on user interaction
-    });
     bgMusic.play().catch(() => {});
   }
 
-  // Split chars for animation
-  // Split chars that need animation
   const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
   const hbd = document.getElementsByClassName("wish-hbd")[0];
 
-  textBoxChars.innerHTML = `<span>${textBoxChars.innerHTML
-    .split("")
-    .join("</span><span>")}</span`;
+  textBoxChars.innerHTML = `<span>${textBoxChars.innerHTML.split("").join("</span><span>")}</span`;
+  hbd.innerHTML = `<span>${hbd.innerHTML.split("").join("</span><span>")}</span`;
 
-  hbd.innerHTML = `<span>${hbd.innerHTML
-    .split("")
-    .join("</span><span>")}</span`;
-
-  const ideaTextTrans = {
-    opacity: 0,
-    y: -20,
-    rotationX: 5,
-    skewX: "15deg"
-  };
-
-  const ideaTextTransLeave = {
-    opacity: 0,
-    y: 20,
-    rotationY: 5,
-    skewX: "-15deg"
-  };
+  const ideaTextTrans = { opacity: 0, y: -20, rotationX: 5, skewX: "15deg" };
+  const ideaTextTransLeave = { opacity: 0, y: 20, rotationY: 5, skewX: "-15deg" };
 
   const tl = new TimelineMax();
 
@@ -152,97 +103,26 @@ const animationTimeline = () => {
     .from(".idea-2", 0.7, ideaTextTrans)
     .to(".idea-2", 0.7, ideaTextTransLeave, "+=1.5")
     .from(".idea-3", 0.7, ideaTextTrans)
-    .to(".idea-3 strong", 0.5, {
-      scale: 1.2,
-      x: 10,
-      backgroundColor: "rgb(21, 161, 237)",
-      color: "#fff"
-    })
+    .to(".idea-3 strong", 0.5, { scale: 1.2, x: 10, backgroundColor: "rgb(21,161,237)", color: "#fff" })
     .to(".idea-3", 0.7, ideaTextTransLeave, "+=1.5")
     .from(".idea-4", 0.7, ideaTextTrans)
     .to(".idea-4", 0.7, ideaTextTransLeave, "+=1.5")
-    .from(".idea-5", 0.7, {
-      rotationX: 15,
-      rotationZ: -10,
-      skewY: "-5deg",
-      y: 50,
-      z: 10,
-      opacity: 0
-    }, "+=0.5")
+    .from(".idea-5", 0.7, { rotationX: 15, rotationZ: -10, skewY: "-5deg", y: 50, z: 10, opacity: 0 }, "+=0.5")
     .to(".idea-5 .smiley", 0.7, { rotation: 90, x: 8 }, "+=0.4")
     .to(".idea-5", 0.7, { scale: 0.2, opacity: 0 }, "+=2")
-    .staggerFrom(".idea-6 span", 0.8, {
-      scale: 3,
-      opacity: 0,
-      rotation: 15,
-      ease: Expo.easeOut
-    }, 0.2)
-    .staggerTo(".idea-6 span", 0.8, {
-      scale: 3,
-      opacity: 0,
-      rotation: -15,
-      ease: Expo.easeOut
-    }, 0.2, "+=1")
-    .staggerFromTo(".baloons img", 2.5, {
-      opacity: 0.9,
-      y: 1400
-    }, {
-      opacity: 1,
-      y: -1000
-    }, 0.2)
-    .from(".lydia-dp", 0.5, {
-      scale: 3.5,
-      opacity: 0,
-      x: 25,
-      y: -25,
-      rotationZ: -45
-    }, "-=2")
-    .from(".hat", 0.5, {
-      x: -100,
-      y: 350,
-      rotation: -180,
-      opacity: 0
-    })
-    .staggerFrom(".wish-hbd span", 0.7, {
-      opacity: 0,
-      y: -50,
-      rotation: 150,
-      skewX: "30deg",
-      ease: Elastic.easeOut.config(1, 0.5)
-    }, 0.1)
-    .staggerFromTo(".wish-hbd span", 0.7, {
-      scale: 1.4,
-      rotationY: 150
-    }, {
-      scale: 1,
-      rotationY: 0,
-      color: "#ff69b4",
-      ease: Expo.easeOut
-    }, 0.1, "party")
-    .from(".wish h5", 0.5, {
-      opacity: 0,
-      y: 10,
-      skewX: "-15deg"
-    }, "party")
-    .staggerTo(".eight svg", 1.5, {
-      visibility: "visible",
-      opacity: 0,
-      scale: 80,
-      repeat: 3,
-      repeatDelay: 1.4
-    }, 0.3)
-    .to(".six", 0.5, {
-      opacity: 0,
-      y: 30,
-      zIndex: "-1"
-    })
+    .staggerFrom(".idea-6 span", 0.8, { scale: 3, opacity: 0, rotation: 15, ease: Expo.easeOut }, 0.2)
+    .staggerTo(".idea-6 span", 0.8, { scale: 3, opacity: 0, rotation: -15, ease: Expo.easeOut }, 0.2, "+=1")
+    .staggerFromTo(".baloons img", 2.5, { opacity: 0.9, y: 1400 }, { opacity: 1, y: -1000 }, 0.2)
+    .from(".lydia-dp", 0.5, { scale: 3.5, opacity: 0, x: 25, y: -25, rotationZ: -45 }, "-=2")
+    .staggerFrom(".wish-hbd span", 0.7, { opacity: 0, y: -50, rotation: 150, skewX: "30deg", ease: Elastic.easeOut.config(1, 0.5) }, 0.1)
+    .staggerFromTo(".wish-hbd span", 0.7, { scale: 1.4, rotationY: 150 }, { scale: 1, rotationY: 0, color: "#ff69b4", ease: Expo.easeOut }, 0.1, "party")
+    .from(".wish h5", 0.5, { opacity: 0, y: 10, skewX: "-15deg" }, "party")
+    .staggerTo(".eight svg", 1.5, { visibility: "visible", opacity: 0, scale: 80, repeat: 3, repeatDelay: 1.4 }, 0.3)
+    .to(".six", 0.5, { opacity: 0, y: 30, zIndex: "-1" })
     .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
     .to(".last-smile", 0.5, { rotation: 90 }, "+=1");
 
-  // Restart Animation + Music
-  // Replay animation + music
-  const replyBtn = document.getElementById("replay");
-  replyBtn.addEventListener("click", () => {
+  document.getElementById("replay").addEventListener("click", () => {
     tl.restart();
     if (bgMusic) {
       bgMusic.currentTime = 0;
