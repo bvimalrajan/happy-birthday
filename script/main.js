@@ -87,7 +87,6 @@ const animationTimeline = () => {
     .from(".three", 0.7, {
       opacity: 0,
       y: 10
-      // scale: 0.7
     })
     .to(
       ".three",
@@ -232,7 +231,6 @@ const animationTimeline = () => {
       {
         opacity: 0,
         y: -50,
-        // scale: 0.3,
         rotation: 150,
         skewX: "30deg",
         ease: Elastic.easeOut.config(1, 0.5)
@@ -292,10 +290,6 @@ const animationTimeline = () => {
       "+=1"
     );
 
-  // tl.seek("currentStep");
-  // tl.timeScale(2);
-
-  // Restart Animation on click
   const replyBtn = document.getElementById("replay");
   replyBtn.addEventListener("click", () => {
     tl.restart();
@@ -304,3 +298,30 @@ const animationTimeline = () => {
 
 // Run fetch and animation in sequence
 fetchData();
+
+/* -------------------------------------------------- */
+/* Countdown Timer – appended at VERY END */
+/* -------------------------------------------------- */
+
+(function () {
+  const weddingDate = new Date("March 16, 2026 00:00:00").getTime();
+
+  setInterval(function () {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    if (distance < 0) return;
+
+    document.getElementById("days").innerText =
+      Math.floor(distance / (1000 * 60 * 60 * 24));
+
+    document.getElementById("hours").innerText =
+      Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+    document.getElementById("minutes").innerText =
+      Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+    document.getElementById("seconds").innerText =
+      Math.floor((distance % (1000 * 60)) / 1000);
+  }, 1000);
+})();
