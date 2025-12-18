@@ -364,3 +364,23 @@ body {
 .countdown-date {
   font-size: 0.95rem;
 }
+
+/* Make countdown compact on mobile */
+@media screen and (max-width: 600px) {
+  .countdown-timer {
+    gap: 8px;
+    font-size: 0.9rem;
+  }
+
+  .countdown-timer span {
+    font-size: 1.2rem;
+  }
+
+  .countdown-title {
+    font-size: 0.9rem;
+  }
+
+  .countdown-date {
+    font-size: 0.8rem;
+  }
+}
