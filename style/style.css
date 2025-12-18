@@ -2,10 +2,18 @@ html {
   box-sizing: border-box;
 }
 
+html,
 body {
+  max-width: 100%;
+  overflow-x: hidden !important;
   margin: 0;
   font-family: "Work Sans", sans-serif;
 }
+
+/* body {
+  margin: 0;
+  font-family: "Work Sans", sans-serif;
+} */
 
 /* ================= CONTAINER ================= */
 
@@ -24,15 +32,22 @@ body {
   z-index: 1;
 }
 
-.container div.seven,
+/* .container div.seven,
 .container div.eight {
   width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-}
+} */
 
+.container div.seven,
+.container div.eight {
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 100%;
+}
 
 .container > div {
   position: absolute;
@@ -247,10 +262,14 @@ body {
 
 @media screen and (max-width: 600px) {
   .countdown-wrapper {
-    margin: 0;          /* removes all margins */
-    padding: 0;         /* safety: no padding either */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
   }
-
+}
 
   .countdown-title {
     font-size: 0.85rem;
