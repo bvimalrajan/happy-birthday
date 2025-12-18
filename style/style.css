@@ -7,6 +7,9 @@ body {
   font-family: "Work Sans", sans-serif;
 }
 
+/* ===============================
+   CONTAINER
+================================ */
 .container {
   height: 100vh;
   width: 100vh;
@@ -24,18 +27,65 @@ body {
   top: 20vh;
 }
 
+.container div.six {
+  top: 10vh;
+  z-index: 1;
+}
+
+.container div.seven,
+.container div.eight {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+}
+
+/* ===============================
+   TEXT SECTIONS
+================================ */
 .one {
   font-size: 4.5rem;
 }
 
 .two {
   font-size: 1.2rem;
+  font-weight: lighter;
 }
 
 .three {
   font-size: 3rem;
 }
 
+.five p {
+  font-size: 2rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.idea-3 strong {
+  padding: 3px 5px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.five .idea-5 {
+  font-size: 4rem;
+}
+
+.idea-5 span,
+.idea-6 span,
+.wish-hbd span {
+  display: inline-block;
+}
+
+.idea-6 span {
+  font-size: 15rem;
+}
+
+/* ===============================
+   CHAT BOX
+================================ */
 .four .text-box {
   width: 600px;
   margin: 0 auto;
@@ -45,11 +95,16 @@ body {
   position: relative;
 }
 
+.text-box p {
+  margin: 0;
+  text-align: left;
+}
+
 .text-box span {
   visibility: hidden;
 }
 
-.fake-btn {
+.text-box .fake-btn {
   position: absolute;
   right: 5px;
   bottom: 5px;
@@ -59,24 +114,126 @@ body {
   border-radius: 3px;
 }
 
-.five p {
-  font-size: 2rem;
+/* ===============================
+   IMAGE SECTION
+================================ */
+.six {
+  position: relative;
 }
 
-.idea-6 span {
-  font-size: 15rem;
+.six img {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
 }
 
+/* ===============================
+   BALLOONS
+================================ */
+.baloons img {
+  display: inline-block;
+  position: absolute;
+}
+
+.baloons img:nth-child(even) {
+  left: -10%;
+}
+
+.baloons img:nth-child(odd) {
+  right: -10%;
+}
+
+.baloons img:nth-child(3n + 0) {
+  left: 30%;
+}
+
+/* ===============================
+   EIGHT (FIXED RIPPLE EFFECT)
+   🔥 THIS FIX PREVENTS BLACK SCREEN
+================================ */
+.eight {
+  pointer-events: none;
+}
+
+.eight svg {
+  width: 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  z-index: -10;
+}
+
+.eight svg circle {
+  fill: none; /* CRITICAL FIX */
+  stroke: rgba(255, 105, 180, 0.6);
+  stroke-width: 2;
+}
+
+/* Original positions preserved */
+.eight svg:nth-child(1) {
+  top: 7vh;
+  left: 5vw;
+}
+
+.eight svg:nth-child(2) {
+  top: 23vh;
+  left: 35vw;
+}
+
+.eight svg:nth-child(3) {
+  top: 33vh;
+  left: 23vw;
+}
+
+.eight svg:nth-child(4) {
+  top: 43vh;
+  left: 57vw;
+}
+
+.eight svg:nth-child(5) {
+  top: 68vh;
+  left: 7vw;
+}
+
+.eight svg:nth-child(6) {
+  top: 42vh;
+  left: 77vw;
+}
+
+.eight svg:nth-child(7) {
+  top: 68vh;
+  left: 83vw;
+}
+
+.eight svg:nth-child(8) {
+  top: 86vh;
+  left: 37vw;
+}
+
+.eight svg:nth-child(9) {
+  top: 94vh;
+  left: 87vw;
+}
+
+/* ===============================
+   WISH SECTION
+================================ */
 .wish-hbd {
   font-size: 3em;
+  margin: 0;
   text-transform: uppercase;
 }
 
 .wish h5 {
+  font-weight: lighter;
   font-size: 2rem;
+  margin: 10px 0 0;
 }
 
-/* Countdown */
+/* ===============================
+   COUNTDOWN (NEW)
+================================ */
 .countdown {
   margin-top: 20px;
 }
@@ -89,6 +246,7 @@ body {
 #timer {
   font-size: 1.8rem;
   font-weight: bold;
+  margin: 5px 0;
 }
 
 .date {
@@ -96,10 +254,53 @@ body {
   color: #555;
 }
 
+/* ===============================
+   OUTRO
+================================ */
 .nine p {
   font-size: 2rem;
+  font-weight: lighter;
 }
 
 #replay {
+  z-index: 3;
   cursor: pointer;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media screen and (max-width: 500px) {
+  .container {
+    width: 90%;
+  }
+
+  .four .text-box {
+    width: 90%;
+  }
+
+  .text-box .fake-btn {
+    right: 5px;
+    bottom: -38px;
+  }
+
+  .idea-5 span {
+    display: block;
+  }
+
+  .idea-6 span {
+    font-size: 10rem;
+  }
+
+  .wish-hbd {
+    font-size: 2.2em;
+  }
+
+  .wish h5 {
+    font-size: 1.4rem;
+  }
+
+  .nine p {
+    font-size: 1.5rem;
+  }
 }
