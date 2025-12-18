@@ -122,14 +122,6 @@ body {
   height: auto;
 }
 
-.six .hat {
-  position: absolute;
-  width: 80px;
-  top: -35px;
-  left: 41.5%;
-  /* transform: scale(0.1); */
-}
-
 .baloons img {
   display: inline-block;
   position: absolute;
@@ -156,59 +148,15 @@ body {
   z-index: -1;
 }
 
-.eight svg:nth-child(1) {
-  top: 7vh;
-  left: 5vw;
-  fill: #bd6ecf;
-}
-
-.eight svg:nth-child(2) {
-  top: 23vh;
-  left: 35vw;
-  fill: #7dd175;
-}
-
-.eight svg:nth-child(3) {
-  top: 33vh;
-  left: 23vw;
-  fill: #349d8b;
-}
-
-.eight svg:nth-child(4) {
-  top: 43vh;
-  left: 57vw;
-  fill: #347a9d;
-}
-
-.eight svg:nth-child(5) {
-  top: 68vh;
-  left: 7vw;
-  fill: #c66053;
-}
-
-.eight svg:nth-child(6) {
-  top: 42vh;
-  left: 77vw;
-  fill: #bfaa40;
-}
-
-.eight svg:nth-child(7) {
-  top: 68vh;
-  left: 83vw;
-  fill: #e3bae8;
-}
-
-.eight svg:nth-child(8) {
-  top: 86vh;
-  left: 37vw;
-  fill: #8762cb;
-}
-
-.eight svg:nth-child(9) {
-  top: 94vh;
-  left: 87vw;
-  fill: #9a90da;
-}
+.eight svg:nth-child(1) { top: 7vh; left: 5vw; fill: #bd6ecf; }
+.eight svg:nth-child(2) { top: 23vh; left: 35vw; fill: #7dd175; }
+.eight svg:nth-child(3) { top: 33vh; left: 23vw; fill: #349d8b; }
+.eight svg:nth-child(4) { top: 43vh; left: 57vw; fill: #347a9d; }
+.eight svg:nth-child(5) { top: 68vh; left: 7vw; fill: #c66053; }
+.eight svg:nth-child(6) { top: 42vh; left: 77vw; fill: #bfaa40; }
+.eight svg:nth-child(7) { top: 68vh; left: 83vw; fill: #e3bae8; }
+.eight svg:nth-child(8) { top: 86vh; left: 37vw; fill: #8762cb; }
+.eight svg:nth-child(9) { top: 94vh; left: 87vw; fill: #9a90da; }
 
 .wish-hbd {
   font-size: 3em;
@@ -232,30 +180,88 @@ body {
   cursor: pointer;
 }
 
-/* Media Queries */
-@media screen and (max-height: 1000px) {
-  .six .hat {
-    left: 40%;
+/* ============================= */
+/* ⏳ COUNTDOWN – BOTTOM CENTER  */
+/* ============================= */
+
+.countdown-wrapper {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 999;
+  font-family: "Work Sans", sans-serif;
+  pointer-events: none;
+}
+
+.countdown-caption {
+  font-size: 14px;
+  font-weight: 300;
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+
+.countdown-time {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: #ff69b4;
+}
+
+.countdown-time span[id^="cd-"] {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 2px;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.countdown-time .unit {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-right: 4px;
+}
+
+.countdown-time .dot {
+  margin: 0 6px;
+  opacity: 0.5;
+}
+
+.countdown-divider {
+  margin: 6px auto 0;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 105, 180, 0.6),
+    transparent
+  );
+}
+
+/* 🌙 Dark mode */
+@media (prefers-color-scheme: dark) {
+  .countdown-caption {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .countdown-time {
+    color: #ff8fcf;
+  }
+
+  .countdown-divider {
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 143, 207, 0.7),
+      transparent
+    );
   }
 }
 
-@media screen and (max-height: 800px) {
-  .six .hat {
-    left: 37%;
-  }
-}
-
-@media screen and (max-height: 700px) {
-  .six .hat {
-    left: 32%;
-  }
-}
-
-@media screen and (max-height: 850px) and (max-width: 450px) {
-  .six .hat {
-    left: 32%;
-  }
-}
+/* ============================= */
+/* 📱 Mobile Adjustments         */
+/* ============================= */
 
 @media screen and (max-width: 500px) {
   .container {
@@ -279,11 +285,6 @@ body {
     font-size: 10rem;
   }
 
-  .six .hat {
-    width: 50px;
-    top: -20px;
-  }
-
   .wish-hbd {
     font-size: 2.2em;
   }
@@ -294,6 +295,13 @@ body {
 
   .nine p {
     font-size: 1.5rem;
-    font-weight: lighter;
+  }
+
+  .countdown-time {
+    font-size: 14px;
+  }
+
+  .countdown-time span[id^="cd-"] {
+    font-size: 16px;
   }
 }
