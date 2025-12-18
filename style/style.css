@@ -2,10 +2,21 @@ html {
   box-sizing: border-box;
 }
 
+/* body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  font-family: "Work Sans", sans-serif;
+} */
+
+html,
 body {
+  height: 100%;
+  overflow: hidden;
   margin: 0;
   font-family: "Work Sans", sans-serif;
 }
+
 
 /* ================= CONTAINER ================= */
 
