@@ -1,56 +1,35 @@
-html {
+* {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
   font-family: "Work Sans", sans-serif;
+  overflow-x: hidden;
 }
 
 .container {
   height: 100vh;
-  width: 100vh;
+  width: 100%;
+  max-width: 1000px;
   margin: 0 auto;
   text-align: center;
-  visibility: hidden;
   position: relative;
-  overflow: hidden;
-}
-
-.container div.six {
-  top: 10vh;
-  z-index: 1;
-}
-
-.container div.seven,
-.container div.eight {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
 }
 
 .container > div {
   position: absolute;
-  left: 0;
-  right: 0;
+  inset: 0;
   top: 20vh;
+  opacity: 0;
 }
 
-.one {
-  font-size: 4.5rem;
-}
-
-.one > img {
-  vertical-align: middle;
-  margin-bottom: 10px;
-  max-width: 100%;
-  height: auto;
+.one h1 {
+  font-size: 4rem;
 }
 
 .two {
   font-size: 1.2rem;
-  font-weight: lighter;
 }
 
 .three {
@@ -58,250 +37,75 @@ body {
 }
 
 .four .text-box {
-  width: 600px;
-  margin: 0 auto;
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
   border: 3px solid #aaa;
-  border-radius: 5px;
-  padding: 10px;
-  position: relative;
+  padding: 12px;
+  border-radius: 6px;
 }
 
-.text-box p {
-  margin: 0;
-  text-align: left;
-}
-
-.text-box span {
-  visibility: hidden;
-}
-
-.text-box .fake-btn {
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
+.fake-btn {
+  background: #15a1ed;
   color: #fff;
-  background-color: rgb(21, 161, 237);
-  padding: 5px 8px;
-  border-radius: 3px;
+  padding: 5px 10px;
+  display: inline-block;
+  margin-top: 10px;
+  border-radius: 4px;
 }
 
 .five p {
   font-size: 2rem;
-  position: absolute;
-  left: 0;
-  right: 0;
-}
-
-.idea-3 strong {
-  padding: 3px 5px;
-  border-radius: 3px;
-  display: inline-block;
-}
-
-.five .idea-5 {
-  font-size: 4rem;
-}
-
-.idea-5 span,
-.idea-6 span,
-.wish-hbd span {
-  display: inline-block;
 }
 
 .idea-6 span {
-  font-size: 15rem;
-}
-
-.six {
-  position: relative;
+  font-size: 12rem;
 }
 
 .six img {
-  display: inline-block;
-  max-width: 100%;
-  height: auto;
+  max-width: 280px;
+  border-radius: 10px;
 }
 
-.baloons img {
-  display: inline-block;
-  position: absolute;
-}
-
-.baloons img:nth-child(even) {
-  left: -10%;
-}
-
-.baloons img:nth-child(odd) {
-  right: -10%;
-}
-
-.baloons img:nth-child(3n + 0) {
-  left: 30%;
-}
-
-.eight svg {
-  width: 25px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  visibility: hidden;
-  z-index: -1;
-}
-
-.eight svg:nth-child(1) { top: 7vh; left: 5vw; fill: #bd6ecf; }
-.eight svg:nth-child(2) { top: 23vh; left: 35vw; fill: #7dd175; }
-.eight svg:nth-child(3) { top: 33vh; left: 23vw; fill: #349d8b; }
-.eight svg:nth-child(4) { top: 43vh; left: 57vw; fill: #347a9d; }
-.eight svg:nth-child(5) { top: 68vh; left: 7vw; fill: #c66053; }
-.eight svg:nth-child(6) { top: 42vh; left: 77vw; fill: #bfaa40; }
-.eight svg:nth-child(7) { top: 68vh; left: 83vw; fill: #e3bae8; }
-.eight svg:nth-child(8) { top: 86vh; left: 37vw; fill: #8762cb; }
-.eight svg:nth-child(9) { top: 94vh; left: 87vw; fill: #9a90da; }
-
-.wish-hbd {
-  font-size: 3em;
-  margin: 0;
-  text-transform: uppercase;
+.wish h3 {
+  font-size: 2.8rem;
 }
 
 .wish h5 {
-  font-weight: lighter;
-  font-size: 2rem;
-  margin: 10px 0 0;
+  font-size: 1.6rem;
 }
 
 .nine p {
-  font-size: 2rem;
-  font-weight: lighter;
+  font-size: 1.8rem;
 }
 
-#replay {
-  z-index: 3;
-  cursor: pointer;
-}
-
-/* ============================= */
-/* ⏳ COUNTDOWN – BOTTOM CENTER  */
-/* ============================= */
-
+/* ⏳ Countdown */
 .countdown-wrapper {
   position: fixed;
-  bottom: 22px;
+  bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  z-index: 999;
-  font-family: "Work Sans", sans-serif;
-  pointer-events: none;
+  z-index: 1000;
 }
 
-.countdown-caption {
-  font-size: 14px;
-  font-weight: 300;
-  opacity: 0.85;
-  margin-bottom: 4px;
+.countdown-box {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
 }
 
-.countdown-time {
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0.5px;
-  color: #ff69b4;
-}
-
-.countdown-time span[id^="cd-"] {
+.countdown-box span {
   font-size: 18px;
-  font-weight: 400;
-  margin: 0 2px;
-  transition: opacity 0.4s ease-in-out;
+  font-weight: bold;
 }
 
-.countdown-time .unit {
-  font-size: 13px;
-  opacity: 0.7;
-  margin-right: 4px;
+.countdown-box small {
+  display: block;
+  font-size: 12px;
 }
 
-.countdown-time .dot {
-  margin: 0 6px;
-  opacity: 0.5;
-}
-
-.countdown-divider {
-  margin: 6px auto 0;
-  width: 120px;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255, 105, 180, 0.6),
-    transparent
-  );
-}
-
-/* 🌙 Dark mode */
-@media (prefers-color-scheme: dark) {
-  .countdown-caption {
-    color: rgba(255, 255, 255, 0.85);
-  }
-
-  .countdown-time {
-    color: #ff8fcf;
-  }
-
-  .countdown-divider {
-    background: linear-gradient(
-      to right,
-      transparent,
-      rgba(255, 143, 207, 0.7),
-      transparent
-    );
-  }
-}
-
-/* ============================= */
-/* 📱 Mobile Adjustments         */
-/* ============================= */
-
-@media screen and (max-width: 500px) {
-  .container {
-    width: 90%;
-  }
-
-  .four .text-box {
-    width: 90%;
-  }
-
-  .text-box .fake-btn {
-    right: 5px;
-    bottom: -38px;
-  }
-
-  .idea-5 span {
-    display: block;
-  }
-
-  .idea-6 span {
-    font-size: 10rem;
-  }
-
-  .wish-hbd {
-    font-size: 2.2em;
-  }
-
-  .wish h5 {
-    font-size: 1.4rem;
-  }
-
-  .nine p {
-    font-size: 1.5rem;
-  }
-
-  .countdown-time {
-    font-size: 14px;
-  }
-
-  .countdown-time span[id^="cd-"] {
-    font-size: 16px;
-  }
+@media (max-width: 600px) {
+  .one h1 { font-size: 2.8rem; }
+  .idea-6 span { font-size: 8rem; }
 }
