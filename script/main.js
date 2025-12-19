@@ -371,3 +371,29 @@ fetchData();
   document.addEventListener("touchstart", enableSound);
 })();
 
+
+// 🎵 Play music on button click
+window.addEventListener("load", () => {
+  const audio = document.getElementById("bg-music");
+  const btn = document.getElementById("play-music-btn");
+
+  if (!audio || !btn) return;
+
+  audio.volume = 0.7;
+  audio.loop = true;
+
+  btn.addEventListener("click", () => {
+    audio.currentTime = 0;
+    audio.muted = false;
+
+    audio.play().then(() => {
+      btn.innerText = "🎶 Music Playing";
+      btn.disabled = true;
+      btn.style.opacity = "0.7";
+      btn.style.cursor = "default";
+    }).catch(err => {
+      console.log("Audio play blocked:", err);
+    });
+  });
+});
+
