@@ -221,7 +221,7 @@ body {
 
 .countdown-wrapper {
   position: fixed;
-  top: 20px;                 /* distance from top */
+  bottom: 12px;                 /* distance from top */
   left: 50%;
   transform: translateX(-50%);
   z-index: 9999;
