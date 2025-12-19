@@ -379,7 +379,7 @@ window.addEventListener("load", () => {
 
   if (!audio || !btn || !overlay) return;
 
-  audio.volume = 0.7;
+  audio.volume = 0.6;
   audio.loop = true;
   audio.muted = false;
 
