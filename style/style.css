@@ -296,30 +296,47 @@ body {
   text-align: center;
 }
 
+/* 🎵 Music control – just above countdown */
+#music-overlay {
+  position: fixed;
+  bottom: 130px;          /* sits above countdown */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+
+  /* REMOVE full-screen overlay */
+  background: transparent;
+  inset: auto;
+  display: block;
+}
+
+/* Pink box stays */
+.music-box {
+  background: linear-gradient(135deg, #ff69b4, #ff8ccf);
+  padding: 14px 26px;
+  border-radius: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
 /* Button */
 #play-music-btn {
-  background: linear-gradient(135deg, #ff69b4, #ff8ccf);
+  background: transparent;
   color: #fff;
   border: none;
-  padding: 14px 28px;
-  border-radius: 30px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-family: "Work Sans", sans-serif;
   cursor: pointer;
+  padding: 0;
 }
 
-#play-music-btn:active {
-  transform: scale(0.96);
-}
-
-/* Mobile */
+/* Mobile adjustment */
 @media screen and (max-width: 600px) {
-  .music-box {
-    padding: 20px 24px;
+  #music-overlay {
+    bottom: 110px;
   }
 
   #play-music-btn {
-    font-size: 0.95rem;
-    padding: 12px 24px;
+    font-size: 0.9rem;
   }
 }
