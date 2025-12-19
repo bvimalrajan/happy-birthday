@@ -371,29 +371,27 @@ fetchData();
   document.addEventListener("touchstart", enableSound);
 })();
 
-
-// 🎵 Play music on button click
+// 🎵 Play music on user click (center UI)
 window.addEventListener("load", () => {
   const audio = document.getElementById("bg-music");
   const btn = document.getElementById("play-music-btn");
+  const overlay = document.getElementById("music-overlay");
 
-  if (!audio || !btn) return;
+  if (!audio || !btn || !overlay) return;
 
-  audio.volume = 0.7;
+  audio.volume = 0.6;
   audio.loop = true;
+  audio.muted = false;
 
   btn.addEventListener("click", () => {
     audio.currentTime = 0;
-    audio.muted = false;
 
     audio.play().then(() => {
-      btn.innerText = "🎶 Music Playing";
-      btn.disabled = true;
-      btn.style.opacity = "0.7";
-      btn.style.cursor = "default";
+      overlay.style.display = "none"; // remove UI
     }).catch(err => {
-      console.log("Audio play blocked:", err);
+      console.log("Audio blocked:", err);
     });
   });
 });
+
 
