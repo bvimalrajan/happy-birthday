@@ -211,26 +211,13 @@ body {
 
 /* ================= COUNTDOWN ================= */
 
-/* .countdown-wrapper {
+.countdown-wrapper {
   position: relative;
   width: 100%;
   margin: 0;
   padding: 0;
   text-align: center;
-} */
-
-.countdown-wrapper {
-  position: fixed;
-  bottom: 12px;                 /* distance from top */
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-
-  width: 100%;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
+} 
 
 .countdown-wrapper p {
   margin: 0;
