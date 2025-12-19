@@ -276,39 +276,50 @@ body {
 }
 
 
-/* 🎵 Play Music Button */
-.music-control {
+/* 🎵 Music Overlay */
+#music-overlay {
   position: fixed;
-  bottom: 70px;           /* sits just above countdown */
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.25); /* soft dim */
 }
 
+/* Center box */
+.music-box {
+  background: #ffffff;
+  padding: 24px 32px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Button */
 #play-music-btn {
-  background: rgba(0, 0, 0, 0.7);
+  background: linear-gradient(135deg, #ff69b4, #ff8ccf);
   color: #fff;
   border: none;
-  padding: 10px 16px;
-  border-radius: 24px;
-  font-size: 0.9rem;
-  cursor: pointer;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 1rem;
   font-family: "Work Sans", sans-serif;
+  cursor: pointer;
 }
 
-#play-music-btn:hover {
-  background: rgba(0, 0, 0, 0.85);
+#play-music-btn:active {
+  transform: scale(0.96);
 }
 
-/* Mobile adjustment */
+/* Mobile */
 @media screen and (max-width: 600px) {
-  .music-control {
-    bottom: 60px;
+  .music-box {
+    padding: 20px 24px;
   }
 
   #play-music-btn {
-    font-size: 0.85rem;
-    padding: 8px 14px;
+    font-size: 0.95rem;
+    padding: 12px 24px;
   }
 }
-
