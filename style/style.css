@@ -275,27 +275,6 @@ body {
   background-color: transparent;
 }
 
-
-/* 🎵 Music Overlay */
-#music-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.25); /* soft dim */
-}
-
-/* Center box */
-.music-box {
-  background: #ffffff;
-  padding: 24px 32px;
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-
 /* 🎵 Music control – just above countdown */
 #music-overlay {
   position: fixed;
