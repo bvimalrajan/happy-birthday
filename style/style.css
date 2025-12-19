@@ -274,3 +274,41 @@ body {
 .lydia-dp {
   background-color: transparent;
 }
+
+
+/* 🎵 Play Music Button */
+.music-control {
+  position: fixed;
+  bottom: 70px;           /* sits just above countdown */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+}
+
+#play-music-btn {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: "Work Sans", sans-serif;
+}
+
+#play-music-btn:hover {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+/* Mobile adjustment */
+@media screen and (max-width: 600px) {
+  .music-control {
+    bottom: 60px;
+  }
+
+  #play-music-btn {
+    font-size: 0.85rem;
+    padding: 8px 14px;
+  }
+}
+
